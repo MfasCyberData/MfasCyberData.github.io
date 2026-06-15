@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mbohou Fils Aboubakar Sidik — Data Engineer</title>
+  <meta name="description" content="Data engineer (MSc Cybersecurity & Data Science, ESAIP). Production ETL redesign, machine learning, and security-aware data engineering.">
+  <meta name="author" content="Mbohou Fils Aboubakar Sidik">
+  <meta property="og:title" content="Mbohou Fils Aboubakar Sidik — Data Engineer">
+  <meta property="og:description" content="Data systems that are fast, reliable, and secure by design. Case studies in data engineering, machine learning, and cybersecurity.">
+  <meta property="og:type" content="website">
+  <!-- After deploy: replace with the absolute URL, e.g. https://yourdomain.dev/assets/img/og-image.png -->
+  <meta property="og:image" content="assets/img/og-image.png">
+  <!-- After deploy: <link rel="canonical" href="https://YOURDOMAIN/"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#projects">Skip to projects</a>
+
+  <header class="site-nav">
+    <div class="wrap nav-inner">
+      <a class="nav-name" href="#top">M. Sidik<span class="gold-dot"> · </span>Data Engineer</a>
+      <nav aria-label="Main">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#experience">Background</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cv" href="assets/cv/CV_Mbohou_Sidik_EN.pdf" download>CV ↓</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO (dark band) ============ -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Angers, France</p>
+          <h1>Mbohou Fils Aboubakar Sidik</h1>
+          <p class="hero-title">Data Engineer<span class="gold-dot"> · </span>Cybersecurity Analyst<span class="gold-dot"> · </span><span class="hero-degree">MSc Cybersecurity &amp; Data Science, ESAIP Engineering School (Bac+5)</span></p>
+          <p class="hero-tagline">Fast, reliable, and secure by design<span class="gold-dot">.</span></p>
+          <p class="hero-lede">My latest work: a production ETL redesign on a PostgreSQL warehouse that cut loading time by 80%.</p>
+          <p class="hero-currently"><span class="gold-label">Currently:</span> IBM Data Engineering certificate (expected Sep 2026) and learning and building a modern-stack pipeline (Airflow, dbt, Snowflake).</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="assets/cv/CV_Mbohou_Sidik_EN.pdf" download>Download CV (EN)</a>
+            <a class="btn btn-ghost" href="assets/cv/CV_Mbohou_Sidik_FR.pdf" download>CV (FR)</a>
+            <a class="btn btn-ghost" href="https://github.com/MfasCyberData" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn-ghost" href="https://linkedin.com/in/fils-abou-sidik-m" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+        <!-- Photo: put your LinkedIn-grade headshot at assets/img/portrait.jpg
+             (~600x600px). If the file is missing, the slot hides itself. -->
+        <div class="hero-photo">
+          <img src="assets/img/portrait.jpg" alt="Portrait of Mbohou Fils Aboubakar Sidik" width="200" height="200" onerror="this.parentElement.style.display='none'">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS (paper) ============ -->
+    <section class="section" id="projects">
+      <div class="wrap">
+        <h2 class="section-heading">Projects</h2>
+
+        <div class="filters" role="group" aria-label="Filter projects by category">
+          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter" data-filter="data" aria-pressed="false">Data</button>
+          <button type="button" class="filter" data-filter="hybrid" aria-pressed="false">Security × Data</button>
+          <button type="button" class="filter" data-filter="security" aria-pressed="false">Security</button>
+        </div>
+
+        <article class="card card-featured" data-category="data">
+          <div class="card-top"><p class="badge badge-gold">Featured · production case study</p><span class="card-year">Internship · 2026</span></div>
+          <h3><a href="projects/hortitrace.html">HortiTrace: redesigning a production ETL</a></h3>
+          <p class="card-summary">I moved a 6.3M-row PostgreSQL warehouse from full reload to incremental loading and pre-aggregated reporting. ETL time down 80%, report time down 83%, with no change to any existing report and no data mismatch.</p>
+          <div class="card-tags"><span class="tag">PostgreSQL</span><span class="tag">PL/pgSQL</span><span class="tag">pgAgent</span><span class="tag">Azure VM</span></div>
+          <p class="card-links"><a class="textlink" href="projects/hortitrace.html">Read the case study →</a></p>
+        </article>
+
+        <!--
+          HIDDEN until the project ships (owner decision, Jun 2026).
+          Modern-stack pipeline: Airflow · S3 · Snowflake · dbt · Great Expectations · Terraform.
+          Uncomment when the repo is public and the README is complete.
+
+        <article class="card card-featured" data-category="data">
+          <div class="card-top"><p class="badge">Data engineering</p><span class="card-right"><span class="chip">Personal</span><span class="card-year">2026</span></span></div>
+          <h3>Modern-stack data pipeline</h3>
+          <p class="card-summary">An Airflow-orchestrated pipeline landing public data in S3, loading it to Snowflake, transforming it with dbt, validating it with Great Expectations, and provisioning the infrastructure with Terraform.</p>
+          <div class="card-tags"><span class="tag">Airflow</span><span class="tag">S3</span><span class="tag">Snowflake</span><span class="tag">dbt</span><span class="tag">Great Expectations</span><span class="tag">Terraform</span></div>
+          <p class="card-links"><a class="textlink" href="https://github.com/MfasCyberData/" target="_blank" rel="noopener noreferrer">GitHub →</a></p>
+        </article>
+        -->
+
+        <div class="cards-grid">
+          <article class="card" data-category="data">
+            <div class="card-thumb"><img src="assets/img/projects/food-prices.png" alt="Forecast chart from the food-price study" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+            <div class="card-body">
+              <div class="card-top"><p class="badge">Data · analytics</p><span class="card-right"><span class="chip">Academic · Solo</span><span class="card-year">2025</span></span></div>
+              <h3>20 years of food prices in Cameroon</h3>
+              <p class="card-summary">A study of 47,750+ World Food Programme price records in R: price volatility, regional maps, seasonal patterns, and 6-month Prophet forecasts for maize, rice, and oil.</p>
+              <div class="card-tags"><span class="tag">R</span><span class="tag">tidyverse</span><span class="tag">sf / tmap</span><span class="tag">Prophet</span></div>
+            </div>
+          </article>
+
+          <article class="card" data-category="data">
+            <div class="card-thumb"><img src="assets/img/projects/big-data.png" alt="Hadoop and Spark cluster overview" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+            <div class="card-body">
+              <div class="card-top"><p class="badge">Data · big data</p><span class="card-right"><span class="chip">Academic · Solo</span><span class="card-year">2025</span></span></div>
+              <h3>Distributed processing cluster</h3>
+              <p class="card-summary">A Hadoop cluster built with Docker Compose (HDFS, YARN) plus a Spark master and worker. I wrote and ran Java MapReduce jobs, then the same job in PySpark.</p>
+              <div class="card-tags"><span class="tag">Docker</span><span class="tag">Hadoop</span><span class="tag">Spark</span><span class="tag">Java</span></div>
+            </div>
+          </article>
+
+          <article class="card" data-category="hybrid">
+            <div class="card-thumb"><img src="assets/img/projects/iot-ids.png" alt="Intrusion detection model results" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+            <div class="card-body">
+              <div class="card-top"><p class="badge badge-hybrid">Security × Data</p><span class="card-right"><span class="chip">Academic · Team of 3</span><span class="card-year">2025</span></span></div>
+              <h3>IoT network threat detection</h3>
+              <p class="card-summary">An intrusion detection pipeline on CSE-CIC-IDS2018 (246,730 network flows). We compared three models, kept Random Forest at 87.9% accuracy on a held-out test set, and deployed it as a Flask app.</p>
+              <div class="card-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Flask</span></div>
+            </div>
+          </article>
+
+          <article class="card" data-category="hybrid">
+            <div class="card-thumb"><img src="assets/img/projects/adversarial-ml.png" alt="Adversarial robustness curves" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+            <div class="card-body">
+              <div class="card-top"><p class="badge badge-hybrid">Security × Data</p><span class="card-right"><span class="chip">Academic · Team of 4</span><span class="card-year">2025</span></span></div>
+              <h3>Adversarial machine learning</h3>
+              <p class="card-summary">We built a CNN on MNIST in PyTorch, attacked it with FGSM, then defended it with adversarial training. Attack success dropped 38% with no loss of normal accuracy.</p>
+              <div class="card-tags"><span class="tag">PyTorch</span><span class="tag">NIST AI 100-2</span></div>
+              <p class="card-links"><a class="textlink" href="https://github.com/MfasCyberData/mnist-adversarial-ml" target="_blank" rel="noopener noreferrer">GitHub →</a></p>
+            </div>
+          </article>
+
+          <article class="card" data-category="security">
+            <div class="card-thumb"><img src="assets/img/projects/siem-labs.png" alt="Wazuh SIEM dashboard" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+            <div class="card-body">
+              <div class="card-top"><p class="badge badge-sec">Security</p><span class="card-right"><span class="chip">Academic · Team of 2</span><span class="card-year">2025</span></span></div>
+              <h3>SIEM &amp; security operations labs</h3>
+              <p class="card-summary">Three separate labs. <strong>SIEM detection:</strong> Wazuh XDR deployed against a weakened Active Directory. <strong>SIEM operations:</strong> AlienVault OSSIM with OSSEC agents, file monitoring, OpenVAS scans, and MITRE ATT&amp;CK detections. <strong>Penetration testing:</strong> a command-injection exploit and Ligolo-ng network pivoting.</p>
+              <div class="card-tags"><span class="tag">Wazuh</span><span class="tag">OSSIM</span><span class="tag">Kali</span><span class="tag">Ligolo-ng</span></div>
+            </div>
+          </article>
+
+          <article class="card" data-category="security">
+            <div class="card-thumb"><img src="assets/img/projects/dfir.png" alt="Forensic timeline illustration" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+            <div class="card-body">
+              <div class="card-top"><p class="badge badge-sec">Security · forensics</p><span class="card-right"><span class="chip">Academic · Team of 4</span><span class="card-year">2025</span></span></div>
+              <h3>Digital forensics investigation</h3>
+              <p class="card-summary">A full investigation across three disk images and memory dumps, following the NIST framework. We recovered encrypted volumes, found a RAT active in memory, extracted data hidden in an image, and rebuilt the complete timeline. Anonymized write-up.</p>
+              <div class="card-tags"><span class="tag">Volatility</span><span class="tag">Autopsy</span><span class="tag">Wireshark</span></div>
+            </div>
+          </article>
+        </div>
+        <p class="grid-note">I am publishing the rebuilt projects to <a class="textlink" href="https://github.com/MfasCyberData" target="_blank" rel="noopener noreferrer">GitHub</a> one by one. Each card gets its repo link when the code and README are ready.</p>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS (warm paper band) ============ -->
+    <section class="section section-alt" id="skills">
+      <div class="wrap">
+        <h2 class="section-heading">Skills</h2>
+        <dl class="skills">
+          <div class="skill-row"><dt>Data engineering</dt><dd>SQL, PostgreSQL, ETL design, data warehousing, Spark, Hadoop, MongoDB</dd></div>
+          <div class="skill-row"><dt>Programming &amp; ML</dt><dd>Python (pandas, scikit-learn), R, TensorFlow, PyTorch, NLP, time-series forecasting</dd></div>
+          <div class="skill-row"><dt>BI &amp; visualization</dt><dd>Power BI (DAX), MyReport, Excel (Power Query), Matplotlib, Seaborn</dd></div>
+          <div class="skill-row"><dt>Cloud &amp; DevOps</dt><dd>Microsoft Azure, Docker, Git, Linux</dd></div>
+          <div class="skill-row"><dt>Security</dt><dd>SIEM (Wazuh, OSSIM), digital forensics (Volatility, Autopsy), penetration testing (Nmap, Ligolo-ng), Wireshark</dd></div>
+          <div class="skill-row"><dt>Governance &amp; risk</dt><dd>EBIOS RM (ANSSI), GDPR, ISO/IEC 27001, risk assessment</dd></div>
+        </dl>
+        <p class="skills-note">Every tool on this list is backed by a project on this page, my internship, or my coursework.</p>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT (paper) ============ -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <h2 class="section-heading">About</h2>
+        <div class="about-grid">
+          <div class="about-main">
+            <p class="about-text">I build reliable, secure, and traceable <strong>data pipelines</strong> that turn raw data into information teams can trust. My work centers on ingestion, transformation, database design, <strong>data quality</strong>, automation, and <strong>secure access management</strong>.</p>
+            <p class="about-text">What sets my profile apart is the cybersecurity background. I do not treat security as an afterthought: I design with <strong>least-privilege access</strong>, auditability, and <strong>GDPR</strong> awareness from the start. My MSc covered both sides, from data engineering and data science to <strong>SOC operations</strong>, <strong>digital forensics</strong>, and <strong>EBIOS RM</strong> risk analysis, so I approach every data project with both an engineering mindset and a security-first perspective.</p>
+          </div>
+          <aside class="about-traits">
+            <h3 class="about-traits-title">How I work</h3>
+            <dl>
+              <dt>Rigor</dt><dd>Nothing goes to production without a structured test plan.</dd>
+              <dt>Ownership</dt><dd>I carried a production change end to end, from diagnosis to deployment, in a stack I had just learned.</dd>
+              <dt>Teamwork</dt><dd>Most of my projects, from machine learning to forensics, were built in teams.</dd>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE & EDUCATION (warm band) ============ -->
+    <section class="section section-alt" id="experience">
+      <div class="wrap">
+        <h2 class="section-heading">Experience &amp; Education</h2>
+        <div class="timeline-cols">
+          <div>
+            <h3 class="tl-col-title">Experience</h3>
+            <ul class="timeline">
+              <li class="tl-entry"><strong>Data Engineer Intern</strong> · HortiTrace SAS, France<span class="tl-dates">Nov 2025 – May 2026</span></li>
+              <li class="tl-entry"><strong>IT Consultant</strong> · HPS International Consulting Plc, Cameroon<span class="tl-dates">Oct 2020 – Aug 2022</span></li>
+              <li class="tl-entry"><strong>IT Applications Analyst</strong> · Will &amp; Brothers Consulting, Cameroon<span class="tl-dates">Nov 2019 – Oct 2020</span></li>
+              <li class="tl-entry"><strong>Junior Programmer &amp; Technology Analyst (Intern)</strong> · Alshadows Technologies, Cameroon<span class="tl-dates">Jan 2019 – Jul 2019</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="tl-col-title">Education</h3>
+            <ul class="timeline">
+              <li class="tl-entry"><strong>MSc Cybersecurity &amp; Data Science</strong> · ESAIP Engineering School, France<span class="tl-dates">Feb 2024 – May 2026</span></li>
+              <li class="tl-entry"><strong>MSc Technical Education, Computer Science &amp; Engineering (first year)</strong> · IUT, Bangladesh<span class="tl-dates">2022 – 2023 · OIC scholarship</span></li>
+              <li class="tl-entry"><strong>BSc Technical Education, Computer Science &amp; Engineering</strong> · IUT, Bangladesh<span class="tl-dates">2015 – 2018 · OIC scholarship</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT (paper band) ============ -->
+    <section class="contact" id="contact">
+      <div class="wrap contact-inner">
+        <div>
+          <h2 class="contact-heading">Let's work together</h2>
+          <p class="contact-sub">Open to junior data engineer and data analyst roles in France. I usually reply within a day.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-solid" href="mailto:sidikmbohou@gmail.com">Email me</a>
+          <button class="btn btn-ghost copy-email" type="button" data-email="sidikmbohou@gmail.com">Copy email</button>
+          <a class="btn btn-ghost" href="https://github.com/MfasCyberData" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/fils-abou-sidik-m" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-ghost" href="assets/cv/CV_Mbohou_Sidik_EN.pdf" download>CV EN</a>
+          <a class="btn btn-ghost" href="assets/cv/CV_Mbohou_Sidik_FR.pdf" download>CV FR</a>
+        </div>
+      </div>
+      <div class="wrap">
+        <p class="footer-line">© <span id="year">2026</span> Mbohou Fils Aboubakar Sidik · Angers, France</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

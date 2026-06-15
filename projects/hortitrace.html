@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HortiTrace: redesigning a production ETL — Mbohou Fils Aboubakar Sidik</title>
+  <meta property="og:title" content="HortiTrace: redesigning a production ETL — case study">
+  <meta property="og:description" content="ETL cycle down 80%, report time down 83%, with no change to existing reports. A production PostgreSQL redesign with the trade-offs explained.">
+  <meta property="og:type" content="article">
+  <!-- After deploy: replace with the absolute URL, e.g. https://yourdomain.dev/assets/img/og-image.png -->
+  <meta property="og:image" content="../assets/img/og-image.png">
+  <meta name="description" content="Case study: a 6.3M-row PostgreSQL warehouse moved to incremental loading and pre-aggregated reporting. ETL down 80%, reporting down 83%.">
+  <!-- After deploy: <link rel="canonical" href="https://YOURDOMAIN/projects/hortitrace.html"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="wrap nav-inner">
+      <a class="nav-name" href="../index.html">M. Sidik<span class="gold-dot"> · </span>Data Engineer</a>
+      <nav aria-label="Main">
+        <a href="../index.html#projects">← Back to projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap wrap-narrow case">
+
+    <p class="badge badge-gold">Data engineering · production · case study</p>
+    <h1 class="case-title">HortiTrace: redesigning a production ETL</h1>
+    <p class="case-meta">Data Engineer Intern (final-year project)<span class="gold-dot"> · </span>HortiTrace SAS, Angers<span class="gold-dot"> · </span>Nov 2025 – May 2026</p>
+    <p class="case-meta case-stack">PostgreSQL<span class="gold-dot"> · </span>PL/pgSQL<span class="gold-dot"> · </span>pgAgent<span class="gold-dot"> · </span>MyReport (Data, Builder, Page)<span class="gold-dot"> · </span>ERP (OData API)<span class="gold-dot"> · </span>Azure VM</p>
+    <p class="case-meta case-role"><strong>My role:</strong> end to end: diagnosis, design, implementation, validation, and production deployment.</p>
+
+    <div class="metrics">
+      <div class="metric"><span class="metric-value">−80%</span><span class="metric-label">ETL cycle duration</span></div>
+      <div class="metric"><span class="metric-value">−83%</span><span class="metric-label">Report generation time</span></div>
+      <div class="metric"><span class="metric-value">0</span><span class="metric-label">Discrepancies · disruptions</span></div>
+    </div>
+
+    <h2 class="case-heading">Context and problem</h2>
+    <p>HortiTrace runs a PostgreSQL data warehouse that feeds business reporting for about 6,425 logistics partners. The warehouse held 6.3 million transaction rows built up since 2010, and the ETL in place reloaded the whole dataset on every hourly cycle, roughly 30 minutes per run. Balance reports used every day by partners and the operations team scanned over 6 million rows on each run and took more than a minute to generate. One constraint shaped every decision: the work had to fit into a fixed, running stack without changing any source, report, or workflow, and it had to deploy without disrupting a service in daily use.</p>
+
+    <h2 class="case-heading">Approach</h2>
+    <p>Both problems had the same root cause: loading and querying strategies that had not kept up with data growth. I addressed each layer on its own.</p>
+    <p><strong>Incremental loading.</strong> I moved the ETL from a full-table reload to incremental loading on a 92-day rolling window, filtered on the transaction creation date. Incremental loading leaves the table in a partly updated state for a few minutes, so to keep reports from reading it mid-refresh I built a separate physical stable copy of the table, refreshed hourly by pgAgent with a staging-and-rename pattern. The volume reloaded per cycle dropped from 6.3M rows to about 312K (−95%), and cycle time from about 30 minutes to about 6 (−80%).</p>
+    <p><strong>Pre-aggregated balance snapshot.</strong> For reporting, I built a snapshot layer inside the warehouse that pre-aggregates frozen historical balances up to a cutoff date. At each hourly refresh, pgAgent rebuilds the snapshot table by joining those pre-aggregated rows with the live recent transactions through UNION ALL, using the same staging-and-rename pattern. Reports read the resulting physical table directly. Report queries went from scanning 6.1M rows to about 530K (−91%), and generation time from over a minute to under 10 seconds (−83%).</p>
+    <p>Both new tables were registered in MyReport Data as new PostgreSQL data sources, alongside the original transaction model, which itself moved from full reload to incremental loading. The model used for reporting, original or one of the two new ones, is selected by pointing the warehouse at the right source, one at a time, with no change to any report. The external sources and every existing report stayed exactly as they were.</p>
+
+    <figure class="case-figure">
+      <svg width="100%" viewBox="0 0 700 760" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <title>ETL and reporting architecture, before and after the redesign</title>
+        <desc>Before: three source models feed a full-reload ETL into the warehouse; reporting scans 6.1 million rows in over a minute. After: the same sources feed an incremental ETL; the warehouse keeps the original tables and adds a stable copy and a pre-aggregated reporting layer; reporting scans about 530 thousand rows in under 10 seconds, with no report or dashboard changed.</desc>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#8A857C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <rect x="18" y="28" width="316" height="470" rx="12" fill="none" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="176" y="52" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F1F">Before</text>
+
+        <rect x="30" y="68" width="292" height="64" rx="8" fill="#FFFFFF" stroke="#D8D1C2"/>
+        <text x="176" y="90" text-anchor="middle" font-size="13" font-weight="600" fill="#1F1F1F">Sources (3 feeds)</text>
+        <text x="176" y="107" text-anchor="middle" font-size="11" fill="#5B5751">ERP (OData API) · Excel · flat files</text>
+        <text x="176" y="122" text-anchor="middle" font-size="11" fill="#5B5751">three source models</text>
+        <line x1="176" y1="132" x2="176" y2="156" stroke="#8A857C" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <rect x="30" y="160" width="292" height="62" rx="8" fill="#FFFFFF" stroke="#D8D1C2"/>
+        <text x="176" y="183" text-anchor="middle" font-size="13" font-weight="600" fill="#1F1F1F">ETL layer</text>
+        <text x="176" y="200" text-anchor="middle" font-size="11" fill="#5B5751">Full reload, every hourly cycle</text>
+        <text x="176" y="215" text-anchor="middle" font-size="11" fill="#5B5751">6.3M rows · ~30 min</text>
+        <line x1="176" y1="222" x2="176" y2="246" stroke="#8A857C" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <rect x="30" y="250" width="292" height="78" rx="8" fill="#FFFFFF" stroke="#D8D1C2"/>
+        <text x="176" y="273" text-anchor="middle" font-size="13" font-weight="600" fill="#1F1F1F">PostgreSQL warehouse</text>
+        <text x="176" y="291" text-anchor="middle" font-size="11" fill="#5B5751">Transaction table (6.3M rows)</text>
+        <text x="176" y="307" text-anchor="middle" font-size="11" fill="#5B5751">+ reference tables</text>
+        <line x1="176" y1="328" x2="176" y2="352" stroke="#8A857C" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <rect x="30" y="356" width="292" height="74" rx="8" fill="#FFFFFF" stroke="#D8D1C2"/>
+        <text x="176" y="379" text-anchor="middle" font-size="13" font-weight="600" fill="#1F1F1F">Reporting and dashboards</text>
+        <text x="176" y="397" text-anchor="middle" font-size="11" fill="#5B5751">Scans 6.1M rows</text>
+        <text x="176" y="413" text-anchor="middle" font-size="11" fill="#5B5751">&gt;1 min per report</text>
+
+        <rect x="366" y="28" width="316" height="700" rx="12" fill="none" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="524" y="52" text-anchor="middle" font-size="14" font-weight="600" fill="#1F1F1F">After</text>
+
+        <rect x="378" y="68" width="292" height="50" rx="8" fill="#FFFFFF" stroke="#D8D1C2"/>
+        <text x="524" y="89" text-anchor="middle" font-size="13" font-weight="600" fill="#1F1F1F">Sources (3 feeds)</text>
+        <text x="524" y="106" text-anchor="middle" font-size="11" fill="#5B5751">Unchanged</text>
+        <line x1="524" y1="118" x2="524" y2="142" stroke="#8A857C" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <rect x="378" y="146" width="292" height="72" rx="8" fill="#F7EBD3" stroke="#C98203"/>
+        <text x="524" y="167" text-anchor="middle" font-size="13" font-weight="600" fill="#7A4F02">ETL layer</text>
+        <text x="524" y="184" text-anchor="middle" font-size="11" fill="#854F0B">Incremental · 92-day window · ~6 min</text>
+        <text x="524" y="199" text-anchor="middle" font-size="11" fill="#854F0B">+ two new PostgreSQL source models</text>
+        <text x="524" y="212" text-anchor="middle" font-size="11" fill="#854F0B">read back from the warehouse</text>
+        <line x1="524" y1="218" x2="524" y2="232" stroke="#8A857C" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <rect x="378" y="236" width="292" height="298" rx="10" fill="#FAF7F1" stroke="#B4B2A9"/>
+        <text x="524" y="259" text-anchor="middle" font-size="13" font-weight="600" fill="#1F1F1F">PostgreSQL warehouse</text>
+
+        <rect x="392" y="272" width="264" height="46" rx="6" fill="#FFFFFF" stroke="#D8D1C2"/>
+        <text x="524" y="291" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1F1F1F">Original tables</text>
+        <text x="524" y="307" text-anchor="middle" font-size="10.5" fill="#5B5751">kept · transaction feed now incremental</text>
+
+        <rect x="392" y="326" width="264" height="50" rx="6" fill="#F7EBD3" stroke="#C98203"/>
+        <text x="524" y="346" text-anchor="middle" font-size="11.5" font-weight="600" fill="#7A4F02">Stable copy</text>
+        <text x="524" y="362" text-anchor="middle" font-size="10.5" fill="#854F0B">consistent read during refresh</text>
+        <line x1="524" y1="376" x2="524" y2="392" stroke="#8A857C" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <rect x="392" y="396" width="264" height="56" rx="6" fill="#F7EBD3" stroke="#C98203"/>
+        <text x="524" y="417" text-anchor="middle" font-size="11.5" font-weight="600" fill="#7A4F02">Pre-aggregated reporting layer</text>
+        <text x="524" y="433" text-anchor="middle" font-size="10.5" fill="#854F0B">frozen history + live rows,</text>
+        <text x="524" y="446" text-anchor="middle" font-size="10.5" fill="#854F0B">rebuilt hourly</text>
+
+        <text x="524" y="478" text-anchor="middle" font-size="10" fill="#7A7268">staging-and-rename swap (~10 ms),</text>
+        <text x="524" y="492" text-anchor="middle" font-size="10" fill="#7A7268">rolls back automatically on failure</text>
+
+        <line x1="524" y1="534" x2="524" y2="558" stroke="#8A857C" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <rect x="378" y="562" width="292" height="74" rx="8" fill="#FFFFFF" stroke="#D8D1C2"/>
+        <text x="524" y="585" text-anchor="middle" font-size="13" font-weight="600" fill="#1F1F1F">Reporting and dashboards</text>
+        <text x="524" y="603" text-anchor="middle" font-size="11" fill="#5B5751">Read the reporting layer · ~530K rows</text>
+        <text x="524" y="619" text-anchor="middle" font-size="11" fill="#5B5751">&lt;10 s per report · zero changes</text>
+
+        <text x="524" y="666" text-anchor="middle" font-size="10.5" fill="#7A7268">active model chosen by configuration,</text>
+        <text x="524" y="680" text-anchor="middle" font-size="10.5" fill="#7A7268">one at a time, no report changes</text>
+
+        <rect x="210" y="708" width="12" height="12" rx="3" fill="#F7EBD3" stroke="#C98203"/>
+        <text x="230" y="718" font-size="11.5" fill="#5B5751">Added or changed</text>
+        <rect x="360" y="708" width="12" height="12" rx="3" fill="#FAF7F1" stroke="#B4B2A9"/>
+        <text x="380" y="718" font-size="11.5" fill="#5B5751">Unchanged</text>
+      </svg>
+      <figcaption class="case-caption">What changed at each layer. The ETL strategy and the warehouse gained new objects (gold). The three source feeds and every existing report and dashboard were left untouched.</figcaption>
+    </figure>
+
+    <h2 class="case-heading">Constraints and trade-offs</h2>
+    <p>Both solutions had to fit the tools already in place (MyReport as the ETL and reporting layer, the ERP as the source) and leave business processes untouched. Three decisions meant choosing between real alternatives.</p>
+    <p><strong>Loading strategy.</strong> Full extraction was rejected because its cost grows with the total size of the table no matter what has changed, so it cannot keep up with data growth. The update/insert/delete mode was rejected because the text-typed primary key sorts differently in the ERP and in PostgreSQL, which makes deletions unreliable. Incremental loading on the creation date was chosen because the ERP's three-month immutability rule gives a provable boundary: no record outside the 92-day window can change, which permanently caps the reload at about 312K rows whatever the table grows to.</p>
+    <p><strong>Reporting layer.</strong> Index tuning and query rewriting alone were rejected because they lower the cost of scanning a fixed volume, not the volume itself, so the gain fades as the table grows. Pre-aggregating frozen history into a physical snapshot removes the scan of the frozen 95% of the data entirely, a structural gain rather than an incremental one. A materialised view was the obvious tool for this, but a production constraint ruled it out: MyReport Data's weekly full rebuild drops and recreates the source table with CASCADE, which silently removes every dependent object, materialised views included. Only a fully independent physical table, with no dependency link to the source, survives that cycle.</p>
+    <p><strong>Consistency mechanism.</strong> TRUNCATE then INSERT was rejected because it leaves the table empty for two to three minutes per refresh, visible to any report running at that moment. The staging-and-rename pattern keeps the inconsistency window to a single ALTER TABLE RENAME, about ten milliseconds, with an exception handler that restores the previous version if the swap fails, so the table can never be left in an undefined state.</p>
+
+    <h2 class="case-heading">Validation</h2>
+    <p>All development and testing ran in a dedicated test environment, synchronised from production before each validation round. The solution only moved forward after passing a structured 7-test protocol: comparing partner-level and article-level balance totals across all 6,425 partners and about 37,500 partner-article combinations, and confirming that the sum of all business-filtered quantities across every partner came to zero. A Go / No-go decision was then taken with my supervisor. The SQL objects were deployed to production in dependency order, validated again against real production data, and the pgAgent jobs activated. The result on deployment day, 3 April 2026: zero balance differences, zero reports changed, no service interruption.</p>
+
+    <h2 class="case-heading">Results</h2>
+    <p>Both solutions went live on 3 April 2026. Earlier in the internship, before the main project entered its supervised development phase in February 2026, I also held a day-to-day continuity role: daily ETL log monitoring, report and dashboard maintenance, and a set of development requests including a collection-threshold alert system, automated geographic distribution maps, and an invoicing-file automation.</p>
+
+    <p class="case-note">The code belongs to HortiTrace SAS and is not public. This case study describes the architecture and results at the same level of detail as my public CV.</p>
+
+    <nav class="case-footer-nav" aria-label="Case study">
+      <a class="textlink" href="../index.html#projects">← All projects</a>
+    </nav>
+
+  </main>
+
+  <section class="contact">
+    <div class="wrap contact-inner">
+      <div>
+        <h2 class="contact-heading">Let's work together</h2>
+        <p class="contact-sub">Open to junior data engineer and data analyst roles in France. I usually reply within a day.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn btn-solid" href="mailto:sidikmbohou@gmail.com">Email me</a>
+        <button class="btn btn-ghost copy-email" type="button" data-email="sidikmbohou@gmail.com">Copy email</button>
+        <a class="btn btn-ghost" href="https://github.com/MfasCyberData" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/fils-abou-sidik-m" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+    <div class="wrap">
+      <p class="footer-line">© <span id="year">2026</span> Mbohou Fils Aboubakar Sidik · Angers, France</p>
+    </div>
+  </section>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
