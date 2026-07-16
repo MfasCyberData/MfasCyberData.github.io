@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HortiTrace Production ETL Case Study — Mbohou Sidik</title>
+<meta content="Production Data Engineering case study: incremental PostgreSQL loading and pre-aggregated reporting reduced ETL time by 80% and report time by 83%." name="description"/>
+<meta content="#1B3A4B" name="theme-color"/>
+<meta content="HortiTrace: redesigning a production ETL" property="og:title"/>
+<meta content="6.3M-row PostgreSQL warehouse: ETL −80%, reporting −83%, zero data discrepancies." property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://mfascyberdata.github.io/assets/img/og-image.png" property="og:image"/>
+<link href="https://mfascyberdata.github.io/en/projects/hortitrace.html" rel="canonical"/><link href="https://mfascyberdata.github.io/projects/hortitrace.html" hreflang="fr" rel="alternate"/><link href="https://mfascyberdata.github.io/en/projects/hortitrace.html" hreflang="en" rel="alternate"/><link href="https://mfascyberdata.github.io/projects/hortitrace.html" hreflang="x-default" rel="alternate"/><meta content="en_US" property="og:locale"/><meta content="fr_FR" property="og:locale:alternate"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&amp;display=swap" rel="stylesheet"/>
+<link href="../../assets/img/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../../css/styles.css" rel="stylesheet"/>
+<link href="../../css/case-study.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "inLanguage": "en",
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "HortiTrace production ETL redesign",
+  "author": {
+    "@type": "Person",
+    "name": "Mbohou Fils Aboubakar Sidik"
+  },
+  "dateCreated": "2026-04-03",
+  "url": "https://mfascyberdata.github.io/en/projects/hortitrace.html"
+}</script></head>
+<body class="case-page" data-locale="en">
+<a class="skip-link" href="#case-content">Skip to case study</a>
+<header class="site-nav case-nav" data-nav="">
+<div class="wrap nav-inner">
+<a aria-label="Portfolio home" class="brand" href="/en/">
+<span aria-hidden="true" class="brand-symbol">MS</span>
+<span><strong>M. Sidik</strong><small>Data Engineer</small></span>
+<span aria-hidden="true" class="locale-badge">EN</span></a>
+<button aria-controls="main-nav" aria-expanded="false" class="nav-toggle" type="button"><span class="sr-only">Open navigation</span><span></span><span></span><span></span></button><nav aria-label="Case study navigation" id="main-nav">
+<a href="/en/#projects">← All projects</a>
+<a download="" href="../../assets/cv/CV_Mbohou_Sidik_EN.pdf">CV</a>
+<div aria-label="Language selection" class="language-switcher" role="group"><a aria-label="Français" href="/projects/hortitrace.html" hreflang="fr" lang="fr" title="Français"><span aria-hidden="true" class="lang-flag">🇫🇷</span><span class="lang-code">FR</span></a><a aria-current="page" aria-label="English" href="/en/projects/hortitrace.html" hreflang="en" lang="en" title="English"><span aria-hidden="true" class="lang-flag">🇬🇧</span><span class="lang-code">EN</span></a></div><a class="nav-cv" href="mailto:sidikmbohou@gmail.com">Contact</a>
+</nav>
+</div>
+</header>
+<main>
+<header class="case-hero">
+<div aria-hidden="true" class="case-hero-grid"></div>
+<div class="wrap">
+<a class="case-breadcrumb" href="/en/#projects">Portfolio / Projects / HortiTrace</a>
+<div class="case-hero-layout">
+<div>
+<p class="eyebrow">Production data engineering · Final-year project (PFE)</p>
+<h1>How I made a production ETL 80% faster without changing existing reports.</h1>
+<p class="case-deck">The warehouse reloaded all 6.3 million rows every hour. I replaced this with incremental loading and a separate reporting layer, while keeping every existing report and workflow unchanged.</p>
+<div class="case-hero-actions">
+<a class="button button-primary" href="#solution">See the architecture <span aria-hidden="true">↓</span></a>
+<a class="button button-secondary" href="/en/#projects">Back to portfolio</a>
+</div>
+</div>
+<aside aria-label="Project facts" class="case-facts">
+<div><span>Role</span><strong>Data Engineer Intern</strong></div>
+<div><span>Project type</span><strong>Final-year project (PFE)</strong></div>
+<div><span>Company</span><strong>HortiTrace SAS · Angers</strong></div>
+<div><span>Period</span><strong>Nov 2025 — May 2026</strong></div>
+<div><span>Ownership</span><strong>Diagnosis to production deployment</strong></div>
+<div><span>Environment</span><strong>Live production system</strong></div>
+</aside>
+</div>
+<div aria-label="Project results" class="case-metrics">
+<div><span class="metric-value">−80%</span><span class="metric-name">ETL duration</span><small>30 min → 6 min</small></div>
+<div><span class="metric-value">−95%</span><span class="metric-name">Rows per cycle</span><small>6.3M → ~312K</small></div>
+<div><span class="metric-value">−83%</span><span class="metric-name">Report time</span><small>&gt;60 sec → &lt;10 sec</small></div>
+<div><span class="metric-value">0</span><span class="metric-name">Discrepancies</span><small>and zero disruption</small></div>
+</div>
+</div>
+</header>
+<div class="wrap case-shell" id="case-content">
+<aside aria-label="Case study contents" class="case-toc">
+<p>Case study</p>
+<nav><a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#solution">Architecture</a><a href="#decisions">Decisions</a><a href="#delivery">Delivery</a><a href="#validation">Validation</a><a href="#results">Results</a><a href="#ownership">Ownership</a></nav>
+<div class="toc-stack">
+<span>Stack</span>
+<p>PostgreSQL<br/>PL/pgSQL<br/>pgAgent<br/>MyReport<br/>OData API<br/>Azure VM</p>
+</div>
+</aside>
+<article class="case-content">
+<section class="case-section" id="overview">
+<p class="case-section-index">01 / Executive overview</p>
+<h2>The system had to become faster without changing how people worked.</h2>
+<p class="case-lead">HortiTrace uses a PostgreSQL warehouse for daily balance reports across about 6,425 logistics partners. The warehouse had grown to 6.3 million transaction rows, but the ETL still reloaded every row each hour.</p>
+<div class="executive-grid">
+<article>
+<span>Business constraint</span>
+<h3>Keep the current way of working.</h3>
+<p>The ERP sources, MyReport reports and user workflows had to stay unchanged.</p>
+</article>
+<article>
+<span>Engineering goal</span>
+<h3>Process less data on every run.</h3>
+<p>The solution had to reduce the amount of data loaded and scanned, so the gain would remain useful as the warehouse grew.</p>
+</article>
+</div>
+</section>
+<section class="case-section" id="problem">
+<p class="case-section-index">02 / Problem diagnosis</p>
+<h2>The ETL and reports were slow for the same reason: they processed too much data.</h2>
+<div class="problem-grid">
+<article class="problem-card">
+<span class="problem-number">A</span>
+<div>
+<h3>Full-reload ETL</h3>
+<p>Every hourly cycle extracted and loaded all 6.3 million transaction rows—even though only recent data could change.</p>
+<dl><div><dt>Cycle time</dt><dd>~30 minutes</dd></div><div><dt>Rows processed</dt><dd>6.3 million</dd></div></dl>
+</div>
+</article>
+<article class="problem-card">
+<span class="problem-number">B</span>
+<div>
+<h3>Expensive reporting scans</h3>
+<p>Balance reports repeatedly scanned more than six million rows to reconstruct historical and current balances.</p>
+<dl><div><dt>Rows scanned</dt><dd>~6.1 million</dd></div><div><dt>Report time</dt><dd>&gt;1 minute</dd></div></dl>
+</div>
+</article>
+</div>
+<div class="constraint-callout"><strong>Key constraint:</strong> improve performance while keeping the three source feeds, all existing reports and the user workflow unchanged.</div>
+</section>
+<section class="case-section" id="solution">
+<p class="case-section-index">03 / Solution architecture</p>
+<h2>I kept the existing model and added two controlled derived tables.</h2>
+<p>The business sources and reports stayed unchanged. The original transaction model was retained and made incremental. I then added two physical PostgreSQL tables: a stable copy for consistent reads and an optimized table for reporting. All three models remained available in MyReport, but only one was published to the existing reporting layer at a time.</p>
+<div aria-label="Before and after architecture showing a full reload replaced by incremental loading, two derived tables and controlled model selection" class="architecture-card" role="img">
+<div class="architecture-head">
+<div><span>System design</span><strong>Before → After</strong></div>
+<small>Copper and green indicate changed or added components</small>
+</div>
+<div class="architecture-columns">
+<div class="architecture-column architecture-before">
+<h3>Before</h3>
+<div class="arch-node"><span>01</span><p><strong>3 external business feeds</strong><small>ERP · Excel · flat files</small></p></div>
+<div class="arch-connector"></div>
+<div class="arch-node is-costly"><span>02</span><p><strong>Full-reload transaction model</strong><small>6.3M rows · ~30 min</small></p></div>
+<div class="arch-connector"></div>
+<div class="arch-node"><span>03</span><p><strong>PostgreSQL transaction table</strong><small>reloaded on every cycle</small></p></div>
+<div class="arch-connector"></div>
+<div class="arch-node is-costly"><span>04</span><p><strong>Direct publication to reports</strong><small>6.1M rows · &gt;60 sec</small></p></div>
+</div>
+<div aria-hidden="true" class="architecture-transition"><span>→</span></div>
+<div class="architecture-column architecture-after">
+<h3>After</h3>
+<div class="arch-node"><span>01</span><p><strong>Same external business sources</strong><small>no upstream changes</small></p></div>
+<div class="arch-connector"></div>
+<div class="arch-node is-improved"><span>02</span><p><strong>Original model made incremental</strong><small>92-day window · ~312K rows</small></p></div>
+<div class="arch-connector"></div>
+<div class="arch-node-stack"><span class="arch-stack-label">3 tables kept in parallel</span>
+<div class="arch-node"><span>03A</span><p><strong>Original table retained</strong><small>kept available in the existing environment</small></p></div>
+<div class="arch-node is-improved"><span>03B</span><p><strong>Stable table — solution A</strong><small>scheduled refresh</small></p></div>
+<div class="arch-node is-improved"><span>03C</span><p><strong>Optimized table — solution B</strong><small>pre-aggregated history + recent data</small></p></div>
+</div>
+<div class="arch-connector"></div>
+<div class="arch-node is-improved"><span>04</span><p><strong>3 models available in MyReport</strong><small>original · stable · optimized</small></p></div>
+<div class="arch-connector"></div>
+<div class="arch-node is-improved"><span>05</span><p><strong>One active model at a time</strong><small>controlled selection before publication</small></p></div>
+<div class="arch-connector"></div>
+<div class="arch-node"><span>06</span><p><strong>Reports and dashboards unchanged</strong><small>same experience for end users</small></p></div>
+</div>
+</div>
+</div>
+<div class="solution-blocks">
+<article><span>01</span><h3>Incremental loading</h3><p>Only the latest 92 days are reloaded because older ERP records cannot change.</p></article>
+<article><span>02</span><h3>Stable copy</h3><p>pgAgent builds a new table in staging and swaps it into place, so reports never read a half-refreshed table.</p></article>
+<article><span>03</span><h3>Pre-aggregated reporting</h3><p>Historical balances are pre-aggregated before being combined with recent transactions, so reports scan far fewer rows.</p></article>
+</div>
+<details class="case-details architecture-details">
+<summary><span>View the detailed architecture — public version</span><small>Internal names and proprietary dependencies are deliberately generalized.</small></summary>
+<div aria-label="Sanitized detailed architecture" class="detailed-architecture">
+<article class="architecture-lane"><span>01</span><h3>Business sources</h3><p>ERP, Excel files and flat files.</p></article>
+<article class="architecture-lane"><span>02</span><h3>MyReport ETL layer</h3><p>Incremental original model, stable-table model and optimized-table model.</p></article>
+<article class="architecture-lane"><span>03</span><h3>PostgreSQL warehouse</h3><p>The original table feeds a stable copy and an optimized reporting table, refreshed by scheduled processes.</p></article>
+<article class="architecture-lane"><span>04</span><h3>Controlled publication</h3><p>Only one model is activated at a time before publication to existing reports.</p></article>
+<article class="architecture-lane"><span>05</span><h3>Reporting layer</h3><p>Reports, dashboards and business workflows stay unchanged.</p></article>
+</div>
+<p class="details-note">This view explains the architecture without publishing internal table, function, database or configuration names.</p>
+</details>
+</section>
+<section class="case-section" id="decisions">
+<p class="case-section-index">04 / Engineering decisions</p>
+<h2>I compared several options before choosing the final design.</h2>
+<div class="decision-list">
+<article>
+<div class="decision-heading"><span>Loading strategy</span><strong>Incremental window selected</strong></div>
+<div class="decision-body">
+<p><b>Why not full reload?</b> Its cost grows with the total table size, even when only a small part has changed.</p>
+<p><b>Why not update/insert/delete?</b> The text primary key sorted differently in the ERP and PostgreSQL, which made deletion checks unreliable.</p>
+<p><b>Choice:</b> load by creation date over a 92-day window, which keeps the reload volume bounded.</p>
+</div>
+</article>
+<article>
+<div class="decision-heading"><span>Reporting layer</span><strong>Independent physical table selected</strong></div>
+<div class="decision-body">
+<p><b>Why not query tuning alone?</b> It can make a scan cheaper, but it does not reduce the number of rows scanned.</p>
+<p><b>Why not a materialized view?</b> MyReport’s weekly rebuild uses CASCADE and would remove dependent objects.</p>
+<p><b>Choice:</b> use an independent physical table that survives source rebuilds and avoids scanning frozen history.</p>
+</div>
+</article>
+<article>
+<div class="decision-heading"><span>Consistency</span><strong>Staging-and-rename selected</strong></div>
+<div class="decision-body">
+<p><b>Why not TRUNCATE then INSERT?</b> Reports could see an empty table for several minutes.</p>
+<p><b>Choice:</b> build in staging and rename the table in one atomic step. The switch takes about ten milliseconds.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="case-section" id="delivery">
+<p class="case-section-index">05 / Project delivery and production release</p>
+<h2>I managed the project in stages, with validation before every major transition.</h2>
+<p>I was the main developer on the optimization project while also supporting day-to-day operations. The context did not justify a formal Scrum framework, so I used a validation-driven iterative approach inspired by Plan–Do–Check–Act. A change in technical supervision also required greater autonomy, with defined review points before key decisions.</p>
+<h3 class="case-subheading">Working cycle</h3>
+<div aria-label="Working cycle inspired by PDCA" class="delivery-cycle">
+<article><span>01 · Plan</span><strong>Diagnose and design</strong><p>Understand system behavior, identify root causes and prepare solutions A and B.</p></article>
+<i aria-hidden="true">→</i>
+<article><span>02 · Do</span><strong>Build in the test environment</strong><p>Implement SQL objects progressively and verify every dependency before moving on.</p></article>
+<i aria-hidden="true">→</i>
+<article><span>03 · Check</span><strong>Validate the data</strong><p>Run the seven-test protocol, confirm zero discrepancy and observe two ETL cycles.</p></article>
+<i aria-hidden="true">→</i>
+<article><span>04 · Act</span><strong>Fix or release</strong><p>If a check failed, correct and revalidate. If it passed, prepare the production release.</p></article>
+</div>
+<h3 class="case-subheading">Planning and tracking</h3>
+<p>I tracked work in Notion using a timeline, milestones and task dependencies. This lightweight setup suited a mainly solo project: it provided enough visibility over priorities and deadlines without the overhead of a heavier delivery tool.</p>
+<div aria-label="Project phases" class="phase-timeline">
+<article><span>Dec — mid-Feb</span><strong>Diagnosis and design</strong><small>~10 weeks</small><p>System analysis, root-cause investigation and final architecture design.</p></article>
+<article><span>Mid-Feb — mid-Mar</span><strong>Development and iteration</strong><small>~4 weeks</small><p>Progressive implementation of both solutions in the test environment.</p></article>
+<article><span>Mid-Mar — 3 Apr</span><strong>Validation and deployment</strong><small>~3 weeks</small><p>Cross-validation, technical review and production deployment on 3 April 2026.</p></article>
+<article class="is-parallel"><span>Throughout the project</span><strong>Documentation</strong><small>In parallel</small><p>Decisions, results, validation procedures and final report preparation.</p></article>
+</div>
+<h3 class="case-subheading">Risks tracked</h3>
+<div class="risk-grid">
+<article><div><span>Data integrity</span><em>Medium probability · High impact</em></div><strong>Step-by-step validation and a zero-discrepancy requirement.</strong><small>Status: resolved</small></article>
+<article><div><span>Reporting disruption</span><em>Low probability · High impact</em></div><strong>Test/production separation and atomic table replacement.</strong><small>Status: controlled</small></article>
+<article><div><span>ETL tool incompatibility</span><em>Medium probability · High impact</em></div><strong>An independent physical table instead of a dependent view.</strong><small>Status: resolved</small></article>
+<article><div><span>Continuity of supervision</span><em>Low probability · Medium impact</em></div><strong>Knowledge transfer, documented decisions and progressive autonomy.</strong><small>Status: managed</small></article>
+</div>
+<h3 class="case-subheading">Controlled production release</h3>
+<p>The production release followed a predefined sequence. No scheduled processing was activated until both the data and operational reports had been checked in the production environment.</p>
+<div aria-label="Seven-step production release sequence" class="release-flow">
+<div class="release-group release-test"><span>Test environment</span>
+<article><b>01</b><strong>Synchronize</strong><small>Recent copy of production data</small></article>
+<article><b>02</b><strong>Validate</strong><small>Seven tests and zero discrepancy</small></article>
+</div>
+<div class="release-group release-review"><span>Review</span>
+<article><b>03</b><strong>Go / No-go</strong><small>Technical milestone sign-off</small></article>
+</div>
+<div class="release-group release-prod"><span>Production</span>
+<article><b>04</b><strong>Deploy SQL</strong><small>Dependency order</small></article>
+<article><b>05</b><strong>Check the data</strong><small>Compare with the test baseline</small></article>
+<article><b>06</b><strong>Confirm reports</strong><small>Correct business outputs</small></article>
+<article><b>07</b><strong>Activate jobs</strong><small>Start scheduled pgAgent processing</small></article>
+</div>
+</div>
+<p class="delivery-note">After deployment, I monitored the system during the remaining internship period to confirm its stability under real operating conditions.</p>
+</section><section class="case-section" id="validation">
+<p class="case-section-index">06 / Data validation</p>
+<h2>I validated the data before production.</h2>
+<p>Development and testing ran in a separate environment synchronized with a recent copy of production. The full protocol contained seven tests. The public summary below shows the main checks without exposing internal details.</p>
+<div class="validation-grid validation-grid-summary">
+<article><span>Main check 01</span><strong>Partner balances</strong><p>Compared balances across about 6,425 logistics partners.</p></article>
+<article><span>Main check 02</span><strong>Partner-article balances</strong><p>Compared about 37,500 partner-article combinations.</p></article>
+<article><span>Main check 03</span><strong>Global control total</strong><p>Confirmed that the business-filtered quantity total remained zero.</p></article>
+</div>
+<p>All seven tests had to pass before the Go / No-go review. The same validation queries were then rerun against production data before scheduled processing was activated.</p>
+
+</section>
+<section class="case-section" id="results">
+<p class="case-section-index">07 / Results</p>
+<h2>The system became faster because it now does less unnecessary work.</h2>
+<div aria-label="Before and after project results" class="results-table" role="table">
+<div class="result-row result-head" role="row"><span role="columnheader">Metric</span><span role="columnheader">Before</span><span role="columnheader">After</span><span role="columnheader">Change</span></div>
+<div class="result-row" role="row"><strong role="cell">ETL cycle</strong><span role="cell">~30 min</span><span role="cell">~6 min</span><em role="cell">−80%</em></div>
+<div class="result-row" role="row"><strong role="cell">Rows reloaded</strong><span role="cell">6.3M</span><span role="cell">~312K</span><em role="cell">−95%</em></div>
+<div class="result-row" role="row"><strong role="cell">Rows scanned</strong><span role="cell">~6.1M</span><span role="cell">~530K</span><em role="cell">−91%</em></div>
+<div class="result-row" role="row"><strong role="cell">Report generation</strong><span role="cell">&gt;60 sec</span><span role="cell">&lt;10 sec</span><em role="cell">−83%</em></div>
+<div class="result-row" role="row"><strong role="cell">Report changes</strong><span role="cell">—</span><span role="cell">0</span><em role="cell">No changes</em></div>
+</div>
+<div class="result-callout">
+<div><span>Deployment date</span><strong>3 April 2026</strong></div>
+<p>Zero balance differences, zero reports changed and no service interruption during production rollout.</p>
+</div>
+</section>
+<section class="case-section" id="ownership">
+<p class="case-section-index">08 / Ownership &amp; reflection</p>
+<h2>I handled the change from diagnosis to production.</h2>
+<div class="ownership-grid">
+<article>
+<h3>What I owned</h3>
+<ul>
+<li>Performance diagnosis and root-cause analysis</li>
+<li>Loading and reporting architecture design</li>
+<li>PL/pgSQL implementation and pgAgent scheduling</li>
+<li>Test protocol and result comparison</li>
+<li>Production deployment and post-deploy validation</li>
+</ul>
+</article>
+<article>
+<h3>What this demonstrates</h3>
+<ul>
+<li>Working within a fixed production environment</li>
+<li>Making trade-offs from operational constraints</li>
+<li>Designing for consistency and rollback</li>
+<li>Communicating technical value through metrics</li>
+<li>Maintaining business continuity during change</li>
+</ul>
+</article>
+</div>
+<p class="confidentiality-note"><strong>Confidentiality:</strong> the source code belongs to HortiTrace SAS and is not public. This page communicates the architecture, decisions and measured outcomes without exposing proprietary implementation details.</p>
+</section>
+</article>
+</div>
+<section class="case-cta">
+<div class="wrap">
+<div>
+<p class="eyebrow">Next step</p>
+<h2>Looking for a 12-month Data Engineering apprenticeship or a junior Data Engineer role in France.</h2>
+</div>
+<div>
+<a class="button button-primary" href="mailto:sidikmbohou@gmail.com">Start a conversation</a>
+<a class="button button-outline" href="/en/#projects">View other projects</a>
+</div>
+</div>
+</section>
+</main>
+<script src="../../js/main.js"></script>
+</body>
+</html>
