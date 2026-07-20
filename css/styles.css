@@ -301,7 +301,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .projects-section .project-link:hover,
 .timeline-content a:hover { color: var(--navy-900); }
 
-/* v5 content restoration and evidence notes */
+/* Project links and skills details */
 .depth-card-featured { border-color: var(--copper-200) !important; }
 .depth-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px !important; }
 .depth-links a { color: var(--copper-700); text-decoration: none; font-size: 11px; font-weight: 700; }
