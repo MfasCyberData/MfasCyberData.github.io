@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FM">
-  <rect width="64" height="64" rx="15" fill="#1B3A4B"/>
-  <path d="M13 46V17h18v6H20v6h10v6H20v11h-7Zm22 0V17h7l7 12 7-12h7v29h-7V28l-7 11-7-11v18h-7Z" fill="#fff"/>
-  <rect x="13" y="50" width="38" height="3" rx="1.5" fill="#E2A63A"/>
+  <rect width="64" height="64" rx="12" fill="#1B3A4B"/>
+  <text x="31" y="40" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" letter-spacing="-1" fill="#F3F0E8">FM</text>
+  <rect x="51" y="15" width="4" height="34" rx="2" fill="#B5651D"/>
 </svg>
