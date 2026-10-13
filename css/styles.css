@@ -649,3 +649,229 @@ body{background:var(--paper);color:#1F2933}
 .case-light .case-link{padding:10px 13px;border:1px solid #D8B28F;border-radius:10px;background:#FFF9F2;box-shadow:0 5px 16px rgba(16,35,46,.03)}
 .case-light .case-link:hover{border-color:#B5651D;background:#FFF4E8}
 @media(max-width:650px){.architecture-compare{grid-template-columns:1fr}.architecture-state-head strong{max-width:none}.architecture-compare-home{min-height:auto!important}.architecture-state{padding:14px}}
+
+
+/* ==========================================================================\n   Academic evidence — public summary, private transcripts\n   ========================================================================== */
+.edu-item.academic-highlight{margin:0 -10px 8px;padding:18px 10px;border:1px solid rgba(101,208,198,.24);border-radius:12px;background:rgba(101,208,198,.045)}
+.edu-item.academic-highlight:first-of-type{padding-top:18px}
+.academic-proof{margin-top:8px!important;color:#d6e5e8!important;font-weight:650;font-size:11.5px!important}
+.academic-link{display:inline-block;margin-top:9px;color:#E2A63A;text-decoration:none;font-size:11.5px;font-weight:800}
+.academic-link:hover{color:#fff}
+.academic-hero{position:relative;overflow:hidden;padding:62px 0 58px;background:var(--ink);color:#fff}
+.academic-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,#000,transparent 100%)}
+.academic-hero .wrap{position:relative;z-index:1}
+.academic-back{display:inline-block;margin-bottom:32px;color:#9fb3ba;text-decoration:none;font:600 10px var(--mono)}
+.academic-back:hover{color:#fff}
+.academic-hero .section-kicker{color:#E2A63A}
+.academic-hero h1{max-width:900px;margin:0;font:700 clamp(48px,7vw,78px)/.95 var(--display);letter-spacing:-.05em}
+.academic-lead{max-width:820px;margin:22px 0 0;color:#c7d5d9;font-size:20px;line-height:1.55}
+.academic-lead strong{color:#fff}
+.academic-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:42px;border:1px solid rgba(255,255,255,.11);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.11)}
+.academic-summary article{padding:22px;background:#132C39}
+.academic-summary span{display:block;color:#7f9ca5;font:700 9px var(--mono);text-transform:uppercase;letter-spacing:.1em}
+.academic-summary strong{display:block;margin-top:10px;color:#fff;font:700 31px/1 var(--display)}
+.academic-summary strong small{font-size:13px;color:#8da7af;font-family:var(--mono)}
+.academic-summary em{display:inline-block;margin-top:11px;color:#F0C87A;font:700 10px var(--mono);font-style:normal}
+.academic-content{padding:86px 0 110px;background:var(--paper)}
+.academic-wrap{max-width:1040px}
+.academic-intro{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:end;margin-bottom:48px}
+.academic-intro h2{margin:0;max-width:700px;font:700 clamp(36px,5vw,56px)/1 var(--display);letter-spacing:-.04em}
+.academic-intro>p{margin:0;color:var(--muted);font-size:15.5px}
+.academic-semester{margin-top:28px;border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 10px 30px rgba(16,35,46,.035)}
+.academic-semester-head{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 24px;background:#F8FAFB;border-bottom:1px solid var(--line)}
+.academic-semester-head span{color:var(--muted);font:700 9px var(--mono);text-transform:uppercase;letter-spacing:.1em}
+.academic-semester-head h2{margin:7px 0 0;font:700 28px/1 var(--display)}
+.academic-semester-head h2 small{margin-left:2px;color:var(--muted);font:500 11px var(--mono)}
+.rank-pill{flex:0 0 auto;padding:8px 11px;border-radius:999px;background:rgba(181,101,29,.09);color:var(--engineering-dark);font:800 10px var(--mono)}
+.academic-table-wrap{overflow-x:auto}
+.academic-table{width:100%;border-collapse:collapse;font-size:13px}
+.academic-table th,.academic-table td{padding:11px 18px;border-top:1px solid #EDF1F3;text-align:left}
+.academic-table thead th{border-top:0;background:#fff;color:var(--muted);font:700 9px var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.academic-table th:last-child,.academic-table td:last-child{width:120px;text-align:right;font-family:var(--mono);font-weight:700}
+.academic-table .ue-row th,.academic-table .ue-row td{background:#F3F6F7;color:var(--ink);font-weight:800}
+.module-indent{display:inline-block;padding-left:18px;color:#45575f}
+.transcript-note{margin-top:34px;padding:24px 26px;border-left:4px solid var(--engineering);border-radius:0 14px 14px 0;background:#FFF8F0}
+.transcript-note span{display:block;color:var(--engineering-dark);font:700 9px var(--mono);text-transform:uppercase;letter-spacing:.1em}
+.transcript-note strong{display:block;margin-top:7px;font-size:17px}
+.transcript-note p{margin:7px 0 0;color:var(--muted);font-size:13px}
+@media(max-width:780px){.academic-summary{grid-template-columns:1fr 1fr}.academic-intro{grid-template-columns:1fr;gap:16px}.academic-content{padding-top:64px}.academic-semester-head{padding:18px}.academic-table th,.academic-table td{padding:10px 13px}.academic-proof{font-size:11px!important}}
+@media(max-width:480px){.academic-hero{padding-top:42px}.academic-lead{font-size:17px}.academic-semester-head{align-items:flex-start;flex-direction:column}.academic-table{font-size:12px}.academic-table th:last-child,.academic-table td:last-child{width:90px}.module-indent{padding-left:8px}}
+
+/* Academic performance summary — reviewed v2 */
+.academic-proof{display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:2px;align-items:center;margin-top:11px!important;padding:12px 13px;border:1px solid rgba(226,166,58,.30);border-radius:11px;background:linear-gradient(135deg,rgba(226,166,58,.12),rgba(101,208,198,.055));}
+.academic-average{grid-row:1/3;color:#F3C86F;font:800 24px/1 var(--display);letter-spacing:-.03em}.academic-average-label{color:#fff;font:750 10.5px var(--mono)}.academic-credit-summary{color:#bcd0d5;font:600 10px/1.35 var(--mono)}
+.academic-overview{display:grid;grid-template-columns:1.2fr .8fr;gap:1px;margin-top:42px;border:1px solid rgba(255,255,255,.12);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.12);box-shadow:0 24px 60px rgba(0,0,0,.16)}
+.academic-overview article{padding:28px 30px;background:#132C39}.academic-overview-primary{background:linear-gradient(135deg,#173644,#102A36)!important}.academic-overview span{display:block;color:#8fa8b0;font:700 9px var(--mono);text-transform:uppercase;letter-spacing:.1em}.academic-overview strong{display:block;margin-top:10px;color:#F3C86F;font:800 48px/.95 var(--display);letter-spacing:-.04em}.academic-overview strong small{margin-left:3px;color:#a9bec4;font:600 14px var(--mono);letter-spacing:0}.academic-overview em{display:block;margin-top:12px;color:#fff;font:700 11px var(--mono);font-style:normal}
+@media(max-width:780px){.academic-overview{grid-template-columns:1fr}.academic-proof{grid-template-columns:1fr}.academic-average{grid-row:auto}.academic-overview strong{font-size:42px}}
+
+
+/* ========================================================================
+   V3 QA pass (Oct. 2026): secondary-text readability and keyboard navigation
+   Changes limited to typography and accessibility; brand palette unchanged.
+   ======================================================================== */
+:where(a, button):focus-visible {
+  outline:3px solid #B5651D;
+  outline-offset:3px;
+}
+.site-nav :where(a, button):focus-visible,
+.dark-panel :where(a, button):focus-visible,
+.academic-hero :where(a, button):focus-visible,
+.contact-section :where(a, button):focus-visible {
+  outline-color:#E2A63A;
+}
+/* Preserve monospace labels but make them legible without zoom. */
+.portrait-card-light .portrait-meta span,
+.portrait-card-light .portrait-meta small,
+.trust-strip span, .trust-strip b,
+.expertise-grid article>span, .expertise-grid li,
+.project-card .project-type, .project-tags span,
+.skill-row .skill-name span, .skill-row .skill-items span,
+.timeline-date, .timeline-company,
+.education-panel .panel-title, .edu-item span,
+.tool-highlight span,
+.architecture-state-head span, .architecture-step small,
+.architecture-state-metric, .architecture-caption,
+.security-proof-grid span, .security-proof-grid a,
+.academic-back, .academic-summary span, .academic-summary em,
+.academic-semester-head span, .academic-semester-head h2 small,
+.academic-table thead th, .rank-pill, .transcript-note span,
+.academic-average-label, .academic-credit-summary,
+.academic-overview span, .academic-overview em {
+  font-size:12px;
+  line-height:1.5;
+}
+.expertise-grid li { overflow-wrap:anywhere; }
+.trust-strip span { padding:11px 8px; }
+.project-tags span { padding:6px 8px; }
+.skill-row .skill-items span { line-height:1.45; }
+.academic-proof .academic-credit-summary { line-height:1.5; }
+/* Smaller viewports: prevent oversized labels from squeezing the narrow cards. */
+@media (max-width:650px) {
+  .architecture-state-head { flex-wrap:wrap; }
+  .architecture-state-head strong { text-align:left; }
+  .hero-career .hero-links a { font-size:12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior:auto!important; animation-duration:0.01ms!important; animation-iteration-count:1!important; transition-duration:0.01ms!important; }
+}
+
+
+/* V4 — a quiet editorial voice, never at the expense of technical clarity. */
+.hero-personal-line{max-width:680px;margin:19px 0 0;padding:10px 0 10px 17px;border-left:2px solid var(--engineering);color:#49616C;font-size:14px;line-height:1.6}
+.hero-personal-line-mark{padding-right:7px;color:var(--engineering-dark);font:700 18px var(--mono)}
+.story-hook{margin:0 0 10px;color:var(--engineering-dark);font:650 13px/1.6 var(--mono);letter-spacing:-.015em}
+.work-ethos{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(265px,.75fr);gap:32px;align-items:center;margin-top:38px;padding:29px 32px;border:1px solid #D5E1E5;border-top:3px solid var(--engineering);border-radius:15px;background:#F8FAFB;box-shadow:0 8px 24px rgba(16,35,46,.04)}
+.work-ethos-label{color:var(--engineering-dark);font:700 11px/1.5 var(--mono);letter-spacing:.08em}
+.work-ethos h3{max-width:670px;margin:9px 0;font:700 clamp(22px,2.45vw,31px)/1.14 var(--display);letter-spacing:-.025em}
+.work-ethos p{max-width:750px;margin:0;color:#415760;font-size:15px;line-height:1.65}
+.work-ethos-pillars{display:grid;gap:8px}
+.work-ethos-pillars span{position:relative;padding:9px 12px 9px 24px;border-radius:9px;background:#EAF0F2;color:#1B3A4B;font-size:13px;font-weight:650}
+.work-ethos-pillars span::before{position:absolute;left:10px;top:8px;content:'·';color:#9C5417;font-size:23px;line-height:1}
+.contact-human{margin-top:14px!important;color:#F5D9AE!important;font-weight:600}
+@media(max-width:790px){.work-ethos{grid-template-columns:1fr;gap:20px;padding:25px 24px}}
+@media(max-width:480px){.work-ethos{margin-top:28px;padding:20px 17px}.work-ethos h3{font-size:22px}.work-ethos-pillars span{font-size:12px}.hero-personal-line{font-size:13px}.story-hook{font-size:12px}}
+/* Keep the editorial hooks visibly copper-colored above their case titles. */
+.case-copy > .story-hook{margin:0 0 8px;color:#9C5417;font:650 13px/1.6 var(--mono)}
+.case-copy > .story-hook + h3{margin-top:3px}
+
+/* ========================================================================
+   V4.1: hero portrait alignment and transparent academic-average labeling
+   ======================================================================== */
+/* Respect the image ratio instead of the fixed HTML height attribute. */
+.hero-career .portrait-card-light .portrait-shell img { height: auto; }
+/* On desktop, the photo starts beside the intro instead of being vertically centred. */
+@media (min-width: 861px) {
+  .hero-career .portrait-card-light { align-self: start; margin-top: 28px; }
+}
+/* Visible alongside the academic summary; labels the self-calculated mean. */
+.academic-overview-note {
+  margin: 12px 0 0;
+  max-width: 900px;
+  color: #C7D8DE;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+/* Keep single-column hero items within the mobile viewport. */
+@media (max-width: 860px) {
+  .hero-career-inner { grid-template-columns: minmax(0, 1fr); }
+  .hero-career-inner > * { min-width: 0; }
+  .hero-career h1 { overflow-wrap: anywhere; }
+}
+
+
+/* V4.2 — verified ECTS grades (teaching units only) and two-metric summary. */
+.academic-overview {
+  grid-template-columns: 1.2fr .8fr;
+}
+.academic-overview-credits strong { color:#fff; }
+.academic-overview em { line-height:1.5; }
+.academic-table { table-layout:fixed; }
+.academic-table th:first-child, .academic-table td:first-child { width:auto; overflow-wrap:anywhere; }
+.academic-table th:nth-child(2), .academic-table td:nth-child(2) {
+  width:116px; text-align:right; font-family:var(--mono); font-weight:700;
+}
+.academic-table th:nth-child(3), .academic-table td:nth-child(3) {
+  width:116px; text-align:center; font-family:var(--mono); font-weight:700;
+}
+.academic-table td.ects-grade-empty { background:#fff; }
+.ects-grade {
+  display:inline-flex; justify-content:center; align-items:center;
+  min-width:34px; min-height:30px; padding:3px 9px;
+  border:1px solid transparent; border-radius:7px;
+  font:800 13px/1.2 var(--mono);
+}
+.ects-grade-a { background:#E6F1EE; border-color:#BED8D0; color:#1C5B4A; }
+.ects-grade-b { background:#F5EBDF; border-color:#E4CBB0; color:#74431F; }
+@media(max-width:880px) {
+  .academic-overview { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:560px) {
+  .academic-overview { grid-template-columns:1fr; }
+  .academic-overview article { padding:22px; }
+  .academic-table th,.academic-table td { padding:9px 8px; }
+  .academic-table th:nth-child(2),.academic-table td:nth-child(2) { width:72px; }
+  .academic-table th:nth-child(3),.academic-table td:nth-child(3) { width:75px; }
+  .academic-table thead th { font-size:10px; letter-spacing:.015em; }
+  .academic-table { font-size:12px; }
+  .module-indent { padding-left:8px; }
+}
+
+/* V4.4 — BI academic internship case: balanced six-card project overview */
+.project-mosaic-six{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.project-mosaic-six .project-card{min-width:0}
+.bi-project-card .project-image img{object-fit:contain;min-width:0}
+@media(max-width:1080px){.project-mosaic-six{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.project-mosaic-six{grid-template-columns:minmax(0,1fr)}}
+
+/* V4.6 QA: mobile navigation stays usable when JavaScript is unavailable.
+   When scripting is active, the existing accessible toggle controls the panel. */
+@media (max-width:860px) {
+  .site-nav .nav-inner { flex-wrap:wrap; }
+  .site-nav nav {
+    position:static;
+    display:flex;
+    width:100%;
+    flex-wrap:wrap;
+    border:0;
+    padding:6px 0 12px;
+    box-shadow:none;
+    background:transparent;
+  }
+  .site-nav .nav-toggle { display:none; }
+  .has-js .site-nav .nav-inner { flex-wrap:nowrap; }
+  .has-js .site-nav nav {
+    position:absolute;
+    left:24px;
+    right:24px;
+    top:calc(100% + 8px);
+    display:none;
+    width:auto;
+    flex-wrap:nowrap;
+    padding:12px;
+    border:1px solid var(--line);
+    background:#fff;
+    box-shadow:var(--shadow-soft);
+  }
+  .has-js .site-nav nav.is-open { display:flex; }
+  .has-js .site-nav .nav-toggle { display:block; }
+}
