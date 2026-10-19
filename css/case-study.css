@@ -276,3 +276,109 @@
 .bi-embed-note{margin:14px 0 0;color:#50636B;font-size:12.5px;line-height:1.6}
 @media(max-width:700px){.bi-screen-gallery{grid-template-columns:1fr}.bi-screen-shot img{height:auto;max-height:360px}.bi-live-panel{padding:17px}.bi-embed-wrap{min-height:360px;aspect-ratio:3/4}}
 @media(max-width:380px){.bi-embed-wrap{min-height:320px}.bi-live-button{font-size:12px}}
+
+/* V5.0 — reviewed ML and cybersecurity case studies */
+.requirements-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.requirements-grid article{padding:19px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.requirements-grid span{display:block;color:var(--engineering-dark);font:700 11px/1.45 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.requirements-grid strong{display:block;margin:9px 0 7px;color:var(--ink);font:700 15px/1.3 var(--display)}
+.requirements-grid p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.58}
+.review-note,.environment-note{margin:22px 0;padding:18px 20px;border-left:4px solid var(--engineering);border-radius:0 12px 12px 0;background:#FFF8F0;color:#405963}
+.environment-note{border-left-color:var(--analytics);background:#F2F8F8}
+.review-note strong,.environment-note strong{display:block;margin-bottom:6px;color:var(--ink);font:700 14px/1.35 var(--display)}
+.review-note p,.environment-note p{margin:0;font-size:13px;line-height:1.65}
+.case-list{margin:18px 0 0;padding-left:22px;color:var(--muted)}
+.case-list li{margin:0 0 9px;font-size:13.5px;line-height:1.65}
+.two-figure-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.compact-figure{margin:0!important}
+.compact-figure img{max-height:360px;object-fit:contain}
+.network-diagram{position:relative;display:grid;grid-template-columns:minmax(150px,1fr) 110px minmax(175px,1.15fr) 110px minmax(150px,1fr);align-items:center;gap:9px;margin:27px 0;padding:22px;border:1px solid var(--line);border-radius:16px;background:#F8FAFB}
+.network-node{padding:16px 12px;border:1px solid #C8D5DB;border-radius:12px;background:#fff;color:#10232E;font:700 14px/1.3 var(--display);text-align:center;box-shadow:0 5px 14px rgba(16,35,46,.04)}
+.network-node small{display:block;margin-top:5px;color:#60747d;font:500 10px/1.45 var(--mono)}
+.network-node.attacker{border-top:3px solid var(--analytics)}
+.network-node.pivot{border-top:3px solid var(--engineering)}
+.network-node.target{border-top:3px solid var(--bridge)}
+.network-link{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#50717a;font:700 26px/1 var(--display);text-align:center}
+.network-link span{margin-top:5px;color:#6d7f86;font:600 9px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.network-link.tunnel{color:#B5651D}
+.blocked-link{position:absolute;left:18%;right:18%;bottom:9px;display:flex;justify-content:center;gap:8px;color:#8A3843;font:700 10px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.blocked-link span{font-size:14px}
+.network-diagram.after{background:#10232E;border-color:#10232E}
+.network-diagram.after .network-node{background:#17313E;border-color:rgba(255,255,255,.16);color:#fff;box-shadow:none}
+.network-diagram.after .network-node small{color:#AEC0C7}
+.network-diagram.after .network-link span{color:#E2C59A}
+@media(max-width:900px){.requirements-grid{grid-template-columns:1fr 1fr}.requirements-grid article:last-child{grid-column:1/-1}.network-diagram{grid-template-columns:1fr;gap:10px}.network-link{transform:rotate(90deg);min-height:28px}.network-link span{transform:rotate(-90deg);position:absolute;margin-left:80px}.blocked-link{position:static}.two-figure-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.requirements-grid{grid-template-columns:1fr}.requirements-grid article:last-child{grid-column:auto}.review-note,.environment-note{padding:16px}.network-diagram{padding:15px}}
+
+
+/* ==========================================================================
+   V5.1 — differentiated storytelling for Spam, Glass and Ligolo
+   ========================================================================== */
+.project-summary{margin:26px 0;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(16,35,46,.025)}
+.project-summary strong{display:block;margin-bottom:8px;color:var(--ink);font:700 18px/1.25 var(--display)}
+.project-summary p{margin:0;color:#405963;font-size:14px;line-height:1.7}
+.signal-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.signal-strip article{padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.signal-strip span{display:block;color:var(--engineering-dark);font:700 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.signal-strip strong{display:block;margin-top:9px;color:var(--ink);font:700 26px/1 var(--display)}
+.signal-strip p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.55}
+.length-compare{display:grid;grid-template-columns:120px 1fr 70px;gap:10px;align-items:center;margin:10px 0}
+.length-compare b{font-size:12px}.length-track{height:12px;border-radius:999px;background:#E8EEF0;overflow:hidden}.length-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--analytics),var(--engineering))}.length-compare em{font:700 12px var(--mono);font-style:normal;color:var(--ink);text-align:right}
+.keyword-cloud{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}.keyword-cloud span{padding:7px 10px;border:1px solid #D5E0E4;border-radius:999px;background:#F8FAFB;color:#304952;font:600 11px var(--mono)}
+.dual-model{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}.model-lane{padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff}.model-lane:first-child{border-top:4px solid var(--analytics)}.model-lane:last-child{border-top:4px solid var(--engineering)}.model-lane>span{color:var(--muted);font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.06em}.model-lane h3{margin:10px 0 8px;font:700 22px/1.1 var(--display)}.model-lane p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}.lane-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:15px}.lane-flow b{padding:7px 9px;border-radius:8px;background:#F3F6F7;font:600 10px var(--mono)}.lane-flow i{font-style:normal;color:var(--engineering-dark)}
+.glass-type-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px 0}.glass-type{padding:16px;border:1px solid var(--line);border-radius:13px;background:#fff}.glass-type b{display:block;color:var(--engineering-dark);font:700 12px var(--mono)}.glass-type span{display:block;margin-top:6px;color:var(--ink);font-size:13px;font-weight:700}.glass-type small{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.45}
+.chemistry-notes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}.chemistry-notes article{padding:20px;border:1px solid var(--line);border-radius:14px;background:#fff}.chemistry-notes strong{font:700 20px var(--display)}.chemistry-notes p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+.cv-folds{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:20px 0}.cv-fold{padding:13px 8px;border:1px solid #D5E0E4;border-radius:10px;background:#fff;text-align:center}.cv-fold b{display:block;color:var(--ink);font:700 13px var(--mono)}.cv-fold small{display:block;margin-top:5px;color:var(--muted);font-size:10px}.cv-note{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.6}
+.attack-path{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:25px 0}.attack-step{position:relative;padding:18px 15px;border:1px solid var(--line);border-radius:14px;background:#fff}.attack-step:not(:last-child)::after{content:'→';position:absolute;right:-11px;top:50%;z-index:2;transform:translateY(-50%);color:var(--engineering-dark);font-weight:800}.attack-step span{color:var(--engineering-dark);font:700 10px var(--mono)}.attack-step strong{display:block;margin:9px 0 6px;color:var(--ink);font:700 15px/1.2 var(--display)}.attack-step p{margin:0;color:var(--muted);font-size:11.5px;line-height:1.55}
+.defense-matrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.defense-matrix article{padding:20px;border-left:4px solid var(--analytics);border-radius:0 13px 13px 0;background:#F4F8F8}.defense-matrix article:nth-child(even){border-left-color:var(--engineering);background:#FFF8F0}.defense-matrix h3{margin:0 0 7px;font:700 17px/1.2 var(--display)}.defense-matrix p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.6}
+.resources-box{margin-top:26px;padding:20px;border:1px solid var(--line);border-radius:14px;background:#F8FAFB}.resources-box h3{margin:0 0 10px;font:700 18px var(--display)}.resources-box p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.6}.resources-box .case-actions{margin-top:14px}
+@media(max-width:900px){.signal-strip,.glass-type-grid{grid-template-columns:1fr 1fr}.attack-path{grid-template-columns:1fr}.attack-step:not(:last-child)::after{content:'↓';right:auto;left:50%;top:auto;bottom:-17px;transform:translateX(-50%)}.cv-folds{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:700px){.dual-model,.chemistry-notes,.defense-matrix{grid-template-columns:1fr}.signal-strip,.glass-type-grid{grid-template-columns:1fr}.length-compare{grid-template-columns:90px 1fr 60px}.cv-folds{grid-template-columns:1fr}.cv-fold{display:flex;justify-content:space-between;align-items:center}.case-hero h1{font-size:clamp(40px,12vw,58px)}}
+
+/* V5.2 — network threat detection case study */
+.ntd-split{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ntd-mobile img{max-width:300px;margin-inline:auto;display:block}
+@media (max-width:700px){.ntd-split{grid-template-columns:1fr}}
+
+/* ===== V5.3 — narrative components ===== */
+.glossary{margin:24px 0;padding:18px 20px;border:1px solid var(--line);border-left:4px solid var(--copper);border-radius:14px;background:#fff}
+.glossary-title{margin:0 0 10px;font:600 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--copper-text)}
+.glossary dl{margin:0;display:grid;gap:12px}
+.glossary dl div{display:grid;grid-template-columns:minmax(150px,210px) 1fr;gap:14px}
+.glossary dt{font:700 15px/1.4 var(--display);color:var(--ink)}
+.glossary dd{margin:0;color:var(--ink-text);line-height:1.6}
+.method-box{margin:22px 0;padding:18px 22px;border-radius:14px;background:var(--paper-2)}
+.method-box>strong{display:block;margin-bottom:8px;font:700 15px/1.4 var(--display);color:var(--ink)}
+.method-steps{margin:0;padding-left:22px;display:grid;gap:6px;line-height:1.6}
+.method-steps li::marker{color:var(--copper);font-weight:700}
+.case-transition{margin:30px 0 0;padding-left:16px;border-left:2px solid var(--copper);font-style:italic;color:var(--muted)}
+.pipeline{display:grid;gap:12px;margin:22px 0}
+.pipe-lane{padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.pipe-name{margin:0 0 8px;font:700 13px/1.4 var(--mono);color:var(--copper-text)}
+.pipe-steps{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pipe-steps span{padding:6px 10px;border-radius:8px;background:var(--paper-2);font:500 13px/1.3 var(--sans);color:var(--ink)}
+.pipe-steps span+span::before{content:"→";margin-right:8px;color:var(--copper)}
+.results.cols-5 .result-row{grid-template-columns:1.5fr repeat(4,1fr)}
+.results.cols-4 .result-row{grid-template-columns:1.6fr repeat(3,1fr)}
+@media (max-width:700px){.glossary dl div{grid-template-columns:1fr;gap:2px}.results.cols-5 .result-row,.results.cols-4 .result-row{grid-template-columns:1fr 1fr}}
+
+/* Ligolo diagram: the "blocked" label gets its own row instead of overlapping the nodes */
+.network-diagram .blocked-link{position:static;grid-column:1/-1;margin-top:4px;padding-top:10px;border-top:1px dashed rgba(138,56,67,.35)}
+
+/* ===== V5.3 — one visual identity per project ===== */
+body.theme-spam{--ink:#0B2A2C;--night:#0B2A2C;--copper:#0F9488;--copper-text:#0B7268;--copper-light:#5EEAD4;--engineering:#0F9488;--engineering-dark:#0B7268;--bridge:#0F9488}
+body.theme-spam .case-hero::before{background-image:repeating-linear-gradient(135deg,rgba(94,234,212,.06) 0 2px,transparent 2px 22px)}
+body.theme-spam .case-hero::after{background:radial-gradient(circle,rgba(20,184,166,.32),rgba(94,234,212,.08) 45%,transparent 70%)}
+body.theme-glass{--ink:#1B1840;--night:#1B1840;--copper:#6D5CE8;--copper-text:#5340CC;--copper-light:#C4B5FD;--engineering:#6D5CE8;--engineering-dark:#5340CC;--bridge:#6D5CE8}
+body.theme-glass .case-hero::before{background-image:radial-gradient(rgba(196,181,253,.16) 1.4px,transparent 1.6px);background-size:26px 26px}
+body.theme-glass .case-hero::after{background:radial-gradient(circle,rgba(139,92,246,.34),rgba(196,181,253,.08) 45%,transparent 70%)}
+body.theme-ligolo{--ink:#0A1A13;--night:#0A1A13;--copper:#16A34A;--copper-text:#15803D;--copper-light:#86EFAC;--engineering:#16A34A;--engineering-dark:#15803D;--bridge:#16A34A}
+body.theme-ligolo .case-hero::before{background-image:linear-gradient(rgba(134,239,172,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(134,239,172,.06) 1px,transparent 1px);background-size:22px 22px}
+body.theme-ligolo .case-hero::after{background:radial-gradient(circle,rgba(34,197,94,.26),rgba(134,239,172,.06) 45%,transparent 70%)}
+body.theme-ntd{--ink:#121417;--night:#121417;--copper:#E8650A;--copper-text:#B44D00;--copper-light:#FFB27A;--engineering:#E8650A;--engineering-dark:#B44D00;--bridge:#E8650A}
+body.theme-ntd .case-hero::after{background:radial-gradient(circle,rgba(255,114,0,.34),rgba(0,150,199,.10) 45%,transparent 70%)}
+body[class*="theme-"] .case-hero .eyebrow,body[class*="theme-"] .case-index{color:var(--copper-light)}
+body[class*="theme-"] .case-content .case-index{color:var(--copper-text)}
+body[class*="theme-"] .button-primary{background:var(--copper);border-color:var(--copper)}
+body[class*="theme-"] .case-metrics strong{color:var(--copper-light)}
+.ntd-mobile img{max-width:300px;margin-inline:auto;display:block}
