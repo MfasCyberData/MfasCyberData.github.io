@@ -44,8 +44,8 @@
 .info-card { padding:24px; border:1px solid var(--line); border-radius:16px; background:#fff; }
 .info-card span { color:var(--analytics-dark); font:600 8px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
 .info-card h3 { margin:15px 0 8px; font:700 21px/1.15 var(--display); }
-.info-card p { margin:0; color:var(--muted); font-size:12.5px; }
-.callout { margin:26px 0 0; padding:20px 23px; border-left:4px solid var(--bridge); border-radius:0 13px 13px 0; background:var(--paper-2); color:#40535a; font-size:14px; }
+.info-card p { margin:0; color:#4C5E65; font-size:12.5px; }
+.callout { margin:26px 0 0; padding:20px 23px; border-left:4px solid var(--bridge); border-radius:0 13px 13px 0; background:var(--paper-2); color:#3C5057; font-size:14px; }
 .callout strong { color:var(--ink); }
 .arch-card { margin:30px 0 26px; padding:24px; border-radius:18px; background:var(--ink); color:#fff; box-shadow:var(--shadow-soft); }
 .arch-head { display:flex; justify-content:space-between; gap:20px; margin-bottom:20px; }
@@ -64,19 +64,19 @@
 .steps article:nth-child(3) { border-top-color:var(--engineering); }
 .steps span { color:var(--engineering-dark); font:600 8px var(--mono); }
 .steps h3 { margin:18px 0 7px; font-size:14px; }
-.steps p { margin:0; color:var(--muted); font-size:11.5px; }
+.steps p { margin:0; color:#4E5F66; font-size:11.5px; }
 .decision-list { display:flex; flex-direction:column; gap:12px; }
 .decision { overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; }
 .decision-head { display:flex; justify-content:space-between; gap:18px; padding:17px 19px; background:var(--paper-2); border-bottom:1px solid var(--line); }
 .decision-head span { color:var(--engineering-dark); font:600 8px var(--mono); text-transform:uppercase; }
 .decision-head strong { font-size:11.5px; }
 .decision-body { padding:17px 19px; }
-.decision-body p { margin:0 0 9px; color:var(--muted); font-size:12px; }
+.decision-body p { margin:0 0 9px; color:#4E6067; font-size:12px; }
 .decision-body p:last-child { margin-bottom:0; }
 .results { overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; }
 .result-row { display:grid; grid-template-columns:1.45fr .9fr .9fr .8fr; gap:14px; align-items:center; min-height:55px; padding:12px 17px; border-top:1px solid var(--line); }
 .result-row:first-child { border-top:0; }
-.result-head { min-height:42px; background:var(--paper-2); color:var(--muted); font:600 8px var(--mono); text-transform:uppercase; letter-spacing:.07em; }
+.result-head { min-height:42px; background:var(--paper-2); color:#55666D; font:600 8px var(--mono); text-transform:uppercase; letter-spacing:.07em; }
 .result-row strong { font-size:11.5px; }
 .result-row span { color:#40535a; font:400 10px var(--mono); }
 .result-row em { color:var(--analytics-dark); font-size:11px; font-style:normal; font-weight:800; }
@@ -92,7 +92,7 @@
 .ownership li::before { content:"✓"; position:absolute; left:0; color:var(--analytics-dark); font-weight:800; }
 .figure { margin:28px 0 0; overflow:hidden; border:1px solid var(--line); border-radius:15px; background:#fff; }
 .figure img { display:block; width:100%; max-height:500px; object-fit:contain; background:#fff; }
-.figure figcaption { padding:12px 15px; border-top:1px solid var(--line); color:var(--muted); font-size:10.5px; }
+.figure figcaption { padding:12px 15px; border-top:1px solid var(--line); color:#51636A; font-size:10.5px; }
 .case-cta { background:var(--ink); color:#fff; padding:76px 0; }
 .case-cta .wrap { display:grid; grid-template-columns:1fr auto; gap:44px; align-items:end; }
 .case-cta h2 { max-width:760px; margin:0; font:700 clamp(34px,5vw,52px)/1 var(--display); letter-spacing:-.04em; }
@@ -135,7 +135,7 @@
   .case-cta .actions { justify-content:flex-start; }
 }
 
-/* ==========================================================================\n   V4 case-study refinement — MyReport + readable technical detail\n   ========================================================================== */
+/* ==========================================================================\n   V4 case-study refinement : MyReport + readable technical detail\n   ========================================================================== */
 .case-nav nav > a{font-size:13px}
 .case-breadcrumb{font-size:10px}
 .case-hero .eyebrow{font-size:10.5px}
@@ -167,7 +167,7 @@
 @media(max-width:560px){.myreport-suite{grid-template-columns:1fr}.myreport-flow{align-items:stretch;flex-direction:column}.myreport-flow i{transform:rotate(90deg);text-align:center}}
 
 
-/* ==========================================================================\n   V5 case-study refinement — architecture comparison + project management\n   ========================================================================== */
+/* ==========================================================================\n   V5 case-study refinement : architecture comparison + project management\n   ========================================================================== */
 .architecture-compare-detail{margin:30px 0 18px;padding:22px;border-radius:18px;background:#10232E;box-shadow:var(--shadow-soft)}
 .architecture-compare-detail .architecture-state{padding:18px}
 .architecture-compare-detail .architecture-state-head strong{max-width:240px;font-size:14px}
@@ -193,7 +193,7 @@
 @media(max-width:700px){.architecture-compare-detail{padding:14px}.architecture-compare-detail .architecture-state-head strong{max-width:none}.delivery-phases,.management-grid{grid-template-columns:1fr}.management-grid>article:last-child{grid-column:auto}.release-flow{align-items:stretch;flex-direction:column}.release-flow i{transform:rotate(90deg);text-align:center}}
 
 
-/* ==========================================================================\n   External validation & recognition — secondary proof after technical results\n   ========================================================================== */
+/* ==========================================================================\n   External validation & recognition : secondary proof after technical results\n   ========================================================================== */
 .recognition-block{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
 .recognition-heading{display:grid;grid-template-columns:190px 1fr;gap:22px;align-items:start;margin-bottom:16px}
 .recognition-heading>span{color:var(--engineering-dark);font:700 9px var(--mono);text-transform:uppercase;letter-spacing:.09em}
@@ -229,7 +229,7 @@
 }
 
 
-/* V4 — guided, accessible architecture comparison; content stays visible without JS. */
+/* V4 : guided, accessible architecture comparison; content stays visible without JS. */
 .architecture-voice{margin:19px 0 13px!important;color:#455D66!important;font-size:15px!important;line-height:1.7!important;font-style:italic}
 .architecture-walkthrough{display:none;margin:22px 0 0;padding:18px 20px;border:1px solid #D9E0E4;border-radius:13px;background:#F8FAFB}
 .has-js .architecture-walkthrough{display:block}
@@ -247,7 +247,7 @@
 /* Non-selected comparison remains readable during guided focus. */
 .has-js .architecture-compare-detail[data-focus="before"] .architecture-state.after,.has-js .architecture-compare-detail[data-focus="after"] .architecture-state.before{opacity:.84}
 
-/* V4.4 — BI case: four step analytical workflow and report cards */
+/* V4.4 : BI case: four step analytical workflow and report cards */
 .arch-flow-four{grid-template-columns:repeat(4,minmax(0,1fr))}
 .arch-flow-four .arch-node{min-width:0}
 .bi-report-grid{margin-top:8px}
@@ -258,7 +258,7 @@
 @media(max-width:600px){.arch-flow-four{grid-template-columns:minmax(0,1fr)}.bi-report-grid{grid-template-columns:1fr}}
 
 
-/* V4.5 — Alshadows: authentic demonstration visuals and responsive Power BI embed */
+/* V4.5 : Alshadows: authentic demonstration visuals and responsive Power BI embed */
 .bi-subtitle{margin:34px 0 8px;color:var(--ink);font:700 clamp(22px,3vw,30px)/1.18 var(--display)}
 .bi-gallery-intro{max-width:760px;margin:0 0 18px!important;color:var(--muted);font-size:14px!important;line-height:1.65}
 .bi-screen-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0 30px}
@@ -277,7 +277,7 @@
 @media(max-width:700px){.bi-screen-gallery{grid-template-columns:1fr}.bi-screen-shot img{height:auto;max-height:360px}.bi-live-panel{padding:17px}.bi-embed-wrap{min-height:360px;aspect-ratio:3/4}}
 @media(max-width:380px){.bi-embed-wrap{min-height:320px}.bi-live-button{font-size:12px}}
 
-/* V5.0 — reviewed ML and cybersecurity case studies */
+/* V5.0 : reviewed ML and cybersecurity case studies */
 .requirements-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
 .requirements-grid article{padding:19px;border:1px solid var(--line);border-radius:14px;background:#fff}
 .requirements-grid span{display:block;color:var(--engineering-dark);font:700 11px/1.45 var(--mono);text-transform:uppercase;letter-spacing:.06em}
@@ -312,7 +312,7 @@
 
 
 /* ==========================================================================
-   V5.1 — differentiated storytelling for Spam, Glass and Ligolo
+   V5.1 : differentiated storytelling for Spam, Glass and Ligolo
    ========================================================================== */
 .project-summary{margin:26px 0;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(16,35,46,.025)}
 .project-summary strong{display:block;margin-bottom:8px;color:var(--ink);font:700 18px/1.25 var(--display)}
@@ -335,12 +335,12 @@
 @media(max-width:900px){.signal-strip,.glass-type-grid{grid-template-columns:1fr 1fr}.attack-path{grid-template-columns:1fr}.attack-step:not(:last-child)::after{content:'↓';right:auto;left:50%;top:auto;bottom:-17px;transform:translateX(-50%)}.cv-folds{grid-template-columns:repeat(5,1fr)}}
 @media(max-width:700px){.dual-model,.chemistry-notes,.defense-matrix{grid-template-columns:1fr}.signal-strip,.glass-type-grid{grid-template-columns:1fr}.length-compare{grid-template-columns:90px 1fr 60px}.cv-folds{grid-template-columns:1fr}.cv-fold{display:flex;justify-content:space-between;align-items:center}.case-hero h1{font-size:clamp(40px,12vw,58px)}}
 
-/* V5.2 — network threat detection case study */
+/* V5.2 : network threat detection case study */
 .ntd-split{grid-template-columns:repeat(3,minmax(0,1fr))}
 .ntd-mobile img{max-width:300px;margin-inline:auto;display:block}
 @media (max-width:700px){.ntd-split{grid-template-columns:1fr}}
 
-/* ===== V5.3 — narrative components ===== */
+/* ===== V5.3 : narrative components ===== */
 .glossary{margin:24px 0;padding:18px 20px;border:1px solid var(--line);border-left:4px solid var(--copper);border-radius:14px;background:#fff}
 .glossary-title{margin:0 0 10px;font:600 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--copper-text)}
 .glossary dl{margin:0;display:grid;gap:12px}
@@ -365,7 +365,7 @@
 /* Ligolo diagram: the "blocked" label gets its own row instead of overlapping the nodes */
 .network-diagram .blocked-link{position:static;grid-column:1/-1;margin-top:4px;padding-top:10px;border-top:1px dashed rgba(138,56,67,.35)}
 
-/* ===== V5.3 — one visual identity per project ===== */
+/* ===== V5.3 : one visual identity per project ===== */
 body.theme-spam{--ink:#0B2A2C;--night:#0B2A2C;--copper:#0F9488;--copper-text:#0B7268;--copper-light:#5EEAD4;--engineering:#0F9488;--engineering-dark:#0B7268;--bridge:#0F9488}
 body.theme-spam .case-hero::before{background-image:repeating-linear-gradient(135deg,rgba(94,234,212,.06) 0 2px,transparent 2px 22px)}
 body.theme-spam .case-hero::after{background:radial-gradient(circle,rgba(20,184,166,.32),rgba(94,234,212,.08) 45%,transparent 70%)}
@@ -382,3 +382,45 @@ body[class*="theme-"] .case-content .case-index{color:var(--copper-text)}
 body[class*="theme-"] .button-primary{background:var(--copper);border-color:var(--copper)}
 body[class*="theme-"] .case-metrics strong{color:var(--copper-light)}
 .ntd-mobile img{max-width:300px;margin-inline:auto;display:block}
+
+
+/* ===== V5.7 : Big Data Hadoop / Spark case study ===== */
+body.theme-bigdata{--ink:#102A43;--night:#0B1F33;--copper:#168AAD;--copper-text:#0B6F8A;--copper-light:#8AD7E8;--engineering:#168AAD;--engineering-dark:#0B6F8A;--bridge:#4C78A8}
+body.theme-bigdata .case-hero::before{background-image:linear-gradient(rgba(138,215,232,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(138,215,232,.06) 1px,transparent 1px);background-size:28px 28px}
+body.theme-bigdata .case-hero::after{background:radial-gradient(circle,rgba(22,138,173,.30),rgba(76,120,168,.08) 46%,transparent 72%)}
+.bigdata-arch{margin:26px 0;padding:20px;border:1px solid #CFE0E8;border-radius:18px;background:#F5FAFC}
+.bigdata-platform{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 18px;border-radius:12px;background:#102A43;color:#fff}
+.bigdata-platform span{font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:#8AD7E8}.bigdata-platform strong{font:700 16px var(--display)}
+.bigdata-lanes{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin-top:14px}.bigdata-lanes article{padding:20px;border:1px solid #D5E3EA;border-radius:14px;background:#fff}.bigdata-lanes article:first-child{border-top:4px solid #168AAD}.bigdata-lanes article:last-child{border-top:4px solid #4C78A8}.bigdata-lanes article>span{font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:#0B6F8A}.bigdata-lanes h3{margin:8px 0 12px;font:700 20px/1.15 var(--display);color:#102A43}.bigdata-lanes p{margin:14px 0 0;color:var(--muted);font-size:12.5px;line-height:1.6}.bigdata-nodes{display:flex;flex-wrap:wrap;gap:7px}.bigdata-nodes b{padding:7px 9px;border-radius:8px;background:#EDF5F8;color:#234B5A;font:600 10px var(--mono)}
+.terminal-proof img{background:#121212;object-fit:contain}.theme-bigdata .figure img{max-height:620px;object-fit:contain}.theme-bigdata .compact-figure img{max-height:360px}
+@media(max-width:760px){.bigdata-lanes{grid-template-columns:1fr}.bigdata-platform{align-items:flex-start;flex-direction:column}}
+
+.finding-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}
+.finding-card{padding:20px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#fff 0%,#f8fbfc 100%)}
+.finding-card span{display:block;color:var(--engineering-dark);font:700 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.finding-card strong{display:block;margin:8px 0 7px;color:var(--ink);font:700 22px/1.15 var(--display)}
+.finding-card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.6}
+.insight-callout{margin:26px 0;padding:22px 24px;border-left:4px solid var(--engineering);background:#f3f8fa;border-radius:0 14px 14px 0;color:#29434e;line-height:1.7}
+.insight-callout strong{color:var(--ink)}
+@media(max-width:900px){.finding-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.finding-grid{grid-template-columns:1fr}}
+
+
+/* V6.0 project identities: same system, clearer visual orientation per case study */
+body.theme-horti{--ink:#1B252B;--night:#1B252B;--copper:#C46B32;--copper-text:#9E4F22;--copper-light:#F0B787;--engineering:#C46B32;--engineering-dark:#9E4F22;--analytics:#536D76;--analytics-dark:#3B535C;--bridge:#C46B32}
+body.theme-horti .case-hero::before{background-image:linear-gradient(90deg,rgba(240,183,135,.075) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px);background-size:58px 100%,100% 28px}
+body.theme-horti .case-hero::after{background:radial-gradient(circle,rgba(196,107,50,.34),rgba(83,109,118,.08) 45%,transparent 72%)}
+body.theme-food{--ink:#223128;--night:#223128;--copper:#C9971E;--copper-text:#7E5D11;--copper-light:#E6C96A;--engineering:#C9971E;--engineering-dark:#7E5D11;--analytics:#5D7649;--analytics-dark:#3F5633;--bridge:#9A7A28}
+body.theme-food .case-hero::before{background-image:radial-gradient(rgba(230,201,106,.14) 1.5px,transparent 1.6px);background-size:31px 31px}
+body.theme-food .case-hero::after{background:radial-gradient(ellipse,rgba(93,118,73,.34),rgba(201,151,30,.16) 46%,transparent 72%)}
+body.theme-bi{--ink:#142A45;--night:#142A45;--copper:#D69B2D;--copper-text:#A87618;--copper-light:#F1D487;--engineering:#D69B2D;--engineering-dark:#A87618;--analytics:#4077A6;--analytics-dark:#2C5B82;--bridge:#D69B2D}
+body.theme-bi .case-hero::before{background-image:linear-gradient(rgba(64,119,166,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(64,119,166,.08) 1px,transparent 1px);background-size:34px 34px}
+body.theme-bi .case-hero::after{background:radial-gradient(circle at 70% 35%,rgba(214,155,45,.28),rgba(64,119,166,.13) 48%,transparent 72%)}
+body.theme-adversarial{--ink:#2A1734;--night:#2A1734;--copper:#C94C9D;--copper-text:#973474;--copper-light:#F2A7D6;--engineering:#C94C9D;--engineering-dark:#973474;--analytics:#7C5BA6;--analytics-dark:#5D4380;--bridge:#C94C9D}
+body.theme-adversarial .case-hero::before{background-image:repeating-linear-gradient(112deg,rgba(242,167,214,.075) 0 2px,transparent 2px 21px)}
+body.theme-adversarial .case-hero::after{background:radial-gradient(circle,rgba(201,76,157,.31),rgba(124,91,166,.11) 46%,transparent 72%)}
+body.theme-dfir{--ink:#0D2230;--night:#0D2230;--copper:#2AA6B8;--copper-text:#1E7F8D;--copper-light:#8EDBE3;--engineering:#2AA6B8;--engineering-dark:#1E7F8D;--analytics:#517C9B;--analytics-dark:#365F7D;--bridge:#2AA6B8}
+body.theme-dfir .case-hero::before{background-image:linear-gradient(135deg,rgba(142,219,227,.06) 25%,transparent 25%),linear-gradient(225deg,rgba(142,219,227,.04) 25%,transparent 25%);background-size:34px 34px}
+body.theme-dfir .case-hero::after{background:radial-gradient(circle,rgba(42,166,184,.3),rgba(81,124,155,.1) 46%,transparent 72%)}
+body.theme-horti .figure,body.theme-food .figure,body.theme-bi .figure,body.theme-adversarial .figure,body.theme-dfir .figure{border-top:3px solid var(--copper)}
+body[class*="theme-"] .case-cta .section-kicker{color:var(--copper-light)!important}

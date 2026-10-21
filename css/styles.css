@@ -380,7 +380,7 @@ body[data-focus="bridge"] .bridge-card.bridge { border-color:rgba(212,162,63,.7)
 
 
 /* ==========================================================================
-   V2 — luminous mineral system / single Analytics Engineer identity
+   V2 : luminous mineral system / single Analytics Engineer identity
    ========================================================================== */
 :root {
   --night: #10232E;
@@ -532,7 +532,7 @@ body { color:var(--ink-text); background:var(--paper); }
 .hero .button-primary:hover { background:#854713; }
 
 
-/* ==========================================================================\n   Career portfolio V3 — Analytics Engineer + Cybersecurity, CDI / CDD\n   ========================================================================== */
+/* ==========================================================================\n   Career portfolio V3 : Analytics Engineer + Cybersecurity, CDI / CDD\n   ========================================================================== */
 :root{
   --ink:#10232E;--ink-2:#1B3A4B;--navy:#1B3A4B;--navy-2:#244E61;
   --paper:#F3F5F6;--paper-2:#E9EEF1;--white:#FFFFFF;--line:#D9E0E4;
@@ -572,7 +572,7 @@ body{background:var(--paper);color:#1F2933}
 @media(max-width:860px){.hero-career-inner{grid-template-columns:1fr}.portrait-card-light{max-width:620px}.expertise-grid{grid-template-columns:1fr 1fr}.security-proof-grid{grid-template-columns:1fr 1fr}.security-proof-grid article:last-child{grid-column:1/-1}.portrait-card-light .portrait-shell img{aspect-ratio:16/9}}
 @media(max-width:650px){.hero-career{padding-top:50px}.hero-career h1{font-size:clamp(43px,13vw,60px)}.portrait-card-light .portrait-meta{align-items:flex-start;flex-direction:column}.portrait-card-light .portrait-meta small{text-align:left}.trust-strip{grid-template-columns:1fr}.expertise-grid{grid-template-columns:1fr}.expertise-grid article{min-height:auto}.expertise-grid h3{margin-top:28px}.security-proof-grid{grid-template-columns:1fr}.security-proof-grid article:last-child{grid-column:auto}.case-light .case-copy{padding:28px 22px}.dark-panel{min-height:330px;padding:22px}}
 
-/* ==========================================================================\n   V4 refinement — readability, project completeness, MyReport visibility\n   ========================================================================== */
+/* ==========================================================================\n   V4 refinement : readability, project completeness, MyReport visibility\n   ========================================================================== */
 .site-nav nav > a{font-size:13.5px}
 .brand-copy small{font-size:10.5px}
 .section-kicker{font-size:10.5px}
@@ -630,7 +630,7 @@ body{background:var(--paper);color:#1F2933}
 }
 
 
-/* ==========================================================================\n   V5 refinement — HortiTrace before/after architecture + stronger case CTA\n   ========================================================================== */
+/* ==========================================================================\n   V5 refinement : HortiTrace before/after architecture + stronger case CTA\n   ========================================================================== */
 .architecture-compare-home{display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:16px}
 .architecture-compare{position:relative;z-index:1;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .architecture-state{padding:16px;border:1px solid rgba(255,255,255,.14);border-radius:15px;background:rgba(255,255,255,.035)}
@@ -651,7 +651,7 @@ body{background:var(--paper);color:#1F2933}
 @media(max-width:650px){.architecture-compare{grid-template-columns:1fr}.architecture-state-head strong{max-width:none}.architecture-compare-home{min-height:auto!important}.architecture-state{padding:14px}}
 
 
-/* ==========================================================================\n   Academic evidence — public summary, private transcripts\n   ========================================================================== */
+/* ==========================================================================\n   Academic evidence : public summary, private transcripts\n   ========================================================================== */
 .edu-item.academic-highlight{margin:0 -10px 8px;padding:18px 10px;border:1px solid rgba(101,208,198,.24);border-radius:12px;background:rgba(101,208,198,.045)}
 .edu-item.academic-highlight:first-of-type{padding-top:18px}
 .academic-proof{margin-top:8px!important;color:#d6e5e8!important;font-weight:650;font-size:11.5px!important}
@@ -697,7 +697,7 @@ body{background:var(--paper);color:#1F2933}
 @media(max-width:780px){.academic-summary{grid-template-columns:1fr 1fr}.academic-intro{grid-template-columns:1fr;gap:16px}.academic-content{padding-top:64px}.academic-semester-head{padding:18px}.academic-table th,.academic-table td{padding:10px 13px}.academic-proof{font-size:11px!important}}
 @media(max-width:480px){.academic-hero{padding-top:42px}.academic-lead{font-size:17px}.academic-semester-head{align-items:flex-start;flex-direction:column}.academic-table{font-size:12px}.academic-table th:last-child,.academic-table td:last-child{width:90px}.module-indent{padding-left:8px}}
 
-/* Academic performance summary — reviewed v2 */
+/* Academic performance summary : reviewed v2 */
 .academic-proof{display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:2px;align-items:center;margin-top:11px!important;padding:12px 13px;border:1px solid rgba(226,166,58,.30);border-radius:11px;background:linear-gradient(135deg,rgba(226,166,58,.12),rgba(101,208,198,.055));}
 .academic-average{grid-row:1/3;color:#F3C86F;font:800 24px/1 var(--display);letter-spacing:-.03em}.academic-average-label{color:#fff;font:750 10.5px var(--mono)}.academic-credit-summary{color:#bcd0d5;font:600 10px/1.35 var(--mono)}
 .academic-overview{display:grid;grid-template-columns:1.2fr .8fr;gap:1px;margin-top:42px;border:1px solid rgba(255,255,255,.12);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.12);box-shadow:0 24px 60px rgba(0,0,0,.16)}
@@ -756,7 +756,7 @@ body{background:var(--paper);color:#1F2933}
 }
 
 
-/* V4 — a quiet editorial voice, never at the expense of technical clarity. */
+/* V4 : a quiet editorial voice, never at the expense of technical clarity. */
 .hero-personal-line{max-width:680px;margin:19px 0 0;padding:10px 0 10px 17px;border-left:2px solid var(--engineering);color:#49616C;font-size:14px;line-height:1.6}
 .hero-personal-line-mark{padding-right:7px;color:var(--engineering-dark);font:700 18px var(--mono)}
 .story-hook{margin:0 0 10px;color:var(--engineering-dark);font:650 13px/1.6 var(--mono);letter-spacing:-.015em}
@@ -799,7 +799,7 @@ body{background:var(--paper);color:#1F2933}
 }
 
 
-/* V4.2 — verified ECTS grades (teaching units only) and two-metric summary. */
+/* V4.2 : verified ECTS grades (teaching units only) and two-metric summary. */
 .academic-overview {
   grid-template-columns: 1.2fr .8fr;
 }
@@ -836,7 +836,7 @@ body{background:var(--paper);color:#1F2933}
   .module-indent { padding-left:8px; }
 }
 
-/* V4.4 — BI academic internship case: balanced six-card project overview */
+/* V4.4 : BI academic internship case: balanced six-card project overview */
 .project-mosaic-six{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .project-mosaic-six .project-card{min-width:0}
 .bi-project-card .project-image img{object-fit:contain;min-width:0}
@@ -876,7 +876,7 @@ body{background:var(--paper);color:#1F2933}
   .has-js .site-nav .nav-toggle { display:block; }
 }
 
-/* V4.8 — Complementary career paths: quiet second-level note in the Contact area. */
+/* V4.8 : Complementary career paths: quiet second-level note in the Contact area. */
 .contact-panel p.contact-secondary-paths {
   max-width: 760px;
   margin-top: 10px;
@@ -885,7 +885,7 @@ body{background:var(--paper);color:#1F2933}
   line-height: 1.65;
 }
 
-/* V4.9 — academic proof in portrait card, ordered semester rankings, and Beyond the CV. */
+/* V4.9 : academic proof in portrait card, ordered semester rankings, and Beyond the CV. */
 .profile-academic{margin:10px 0 0;padding:11px 0 0;border-top:1px solid var(--line);display:grid;gap:3px}
 .profile-academic-degree{color:var(--ink);font-size:12px;font-weight:700}
 .profile-academic a{width:max-content;max-width:100%;color:var(--engineering-dark);font:600 10px/1.5 var(--mono);text-decoration:none}
@@ -939,7 +939,7 @@ body{background:var(--paper);color:#1F2933}
 @media(max-width:980px){.academic-overview{grid-template-columns:1fr 1fr}.academic-overview-ranking{grid-column:1/-1}.beyond-hero-grid,.beyond-story-split,.beyond-story-split.reverse{grid-template-columns:1fr;gap:32px}.beyond-story-split.reverse .beyond-copy,.beyond-story-split.reverse .beyond-media{grid-column:auto;grid-row:auto}.beyond-hero-photo{max-width:520px}.beyond-story{padding:54px 0}}
 @media(max-width:620px){.academic-overview{grid-template-columns:1fr}.academic-overview-ranking{grid-column:auto}.beyond-hero{padding-top:48px}.beyond-hero-grid{gap:28px}.beyond-hero h1{font-size:43px}.beyond-lead{font-size:16px}.beyond-story{padding:44px 0}.football-gallery,.evidence-grid{grid-template-columns:1fr}.evidence-card{grid-template-columns:92px 1fr}.evidence-card img{width:92px;height:72px}.beyond-copy p{font-size:15px}.profile-academic-degree{font-size:11px}}
 
-/* V4.9.2 — final Beyond the CV editorial refinements */
+/* V4.9.2 : final Beyond the CV editorial refinements */
 .beyond-hero-photo img{object-position:center 42%}
 .football-gallery{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
 .football-gallery .beyond-media{display:flex;flex-direction:column;height:100%}
@@ -947,8 +947,35 @@ body{background:var(--paper);color:#1F2933}
 .football-gallery .beyond-media figcaption{margin-top:auto}
 @media(max-width:620px){.football-gallery{grid-template-columns:1fr}.football-gallery .beyond-media img{aspect-ratio:4/3}}
 
-/* V5.0 — nine-card project panorama */
+/* V5.0 : nine-card project panorama */
 .project-mosaic-nine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .project-mosaic-nine .project-card{min-width:0}
 @media(max-width:1080px){.project-mosaic-nine{grid-template-columns:repeat(2,minmax(0,1fr))}.project-mosaic-nine .project-card:last-child{grid-column:auto}}
 @media(max-width:650px){.project-mosaic-nine{grid-template-columns:minmax(0,1fr)}}
+
+/* V5.5 skills hierarchy */
+.skill-row-secondary{opacity:.92;background:rgba(255,255,255,.45)}
+.skill-row-secondary .skill-name span{font-size:.78rem}
+
+
+/* V6.0: make the personal page easier to discover and visually distinct */
+.button-beyond{border-color:#C9963A;background:#F6E3B8;color:#3B271E}
+.button-beyond:hover{border-color:#A97426;background:#EFD597;color:#2B1C16}
+body.beyond-page{--ink:#3A1737;--ink-2:#5A2744;--paper:#FFF8EF;--paper-2:#F7EBDD;--line:#E5D1C3;--muted:#655650;--engineering:#B65B46;--engineering-dark:#8E4334;--analytics:#8B5A54;--analytics-dark:#6A403C;--bridge:#D3A24C;background:#FFF8EF}
+.beyond-page .site-nav{background:rgba(255,248,239,.94);border-bottom-color:#E5D1C3}
+.beyond-page .beyond-hero{background:linear-gradient(135deg,#3A1737 0%,#6C2E4C 48%,#B65B46 100%)}
+.beyond-page .beyond-hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(223,178,85,.12) 1.2px,transparent 1.3px);background-size:30px 30px;mask-image:linear-gradient(to bottom,#000,transparent 92%)}
+.beyond-page .beyond-hero::after{background:radial-gradient(circle,rgba(211,162,76,.24),rgba(182,91,70,.18) 48%,transparent 72%)}
+.beyond-page .beyond-hero-grid{position:relative;z-index:2}
+.beyond-page .beyond-stories{position:relative}
+.beyond-page .beyond-story{border-bottom-color:#D9CDBD}
+.beyond-page .beyond-story:nth-child(even){margin:18px 0;padding-left:30px;padding-right:30px;border:1px solid #E5D4C7;border-radius:26px;background:#FFFDF7;box-shadow:0 18px 45px rgba(87,48,43,.06)}
+.beyond-page .beyond-number{color:#A04E3E}
+.beyond-page .beyond-copy .beyond-takeaway{border-left-color:#B65B46;background:#FFF8EF}
+.beyond-page .beyond-media{border-color:#E1D1C4;background:#FFFDF8}
+.beyond-page .beyond-close{background:#F0E0D2}
+@media(max-width:620px){.beyond-page .beyond-story:nth-child(even){padding-left:18px;padding-right:18px}}
+
+/* Keep the Bangladesh graduation portrait fully visible, especially on mobile. */
+.beyond-media.graduation-media img{width:100%;height:auto;max-height:none;aspect-ratio:auto;object-fit:contain;object-position:center;background:#FFF8EF}
+@media(max-width:620px){.beyond-media.graduation-media{padding:6px}.beyond-media.graduation-media img{width:100%;height:auto;max-height:none;object-fit:contain;object-position:center}}
