@@ -424,3 +424,232 @@ body.theme-dfir .case-hero::before{background-image:linear-gradient(135deg,rgba(
 body.theme-dfir .case-hero::after{background:radial-gradient(circle,rgba(42,166,184,.3),rgba(81,124,155,.1) 46%,transparent 72%)}
 body.theme-horti .figure,body.theme-food .figure,body.theme-bi .figure,body.theme-adversarial .figure,body.theme-dfir .figure{border-top:3px solid var(--copper)}
 body[class*="theme-"] .case-cta .section-kicker{color:var(--copper-light)!important}
+
+/* ========================================================================
+   V7 case-study system: light enterprise shell, project accents as metadata
+   ======================================================================== */
+.case-page{
+  --v7-blue:#1F4E9E;
+  --v7-blue-dark:#163A75;
+  --v7-bg:#F3F6F8;
+  --v7-line:#DCE3E8;
+  --v7-ink:#1F2328;
+  --v7-muted:#5E6B78;
+  background:#fff;
+  color:var(--v7-ink);
+}
+.case-page .site-nav{background:rgba(255,255,255,.95);border-bottom:1px solid var(--v7-line);backdrop-filter:blur(16px)}
+.case-page .brand-mark{background:var(--v7-blue);box-shadow:0 7px 18px rgba(31,78,158,.16)}
+.case-page .site-nav nav>a{color:#46535E}
+.case-page .site-nav nav>a::after{background:var(--v7-blue)}
+.case-page .site-nav nav .language-switcher{border-color:var(--v7-line);background:#F7F9FA}
+.case-page .site-nav nav .language-switcher a[aria-current="page"]{background:#fff;color:var(--v7-blue-dark);box-shadow:0 1px 5px rgba(31,35,40,.08)}
+.case-page .nav-cta{background:var(--v7-blue);color:#fff!important;border-radius:999px}
+.case-page .nav-cta:hover{background:var(--v7-blue-dark)}
+
+.case-page .case-hero{padding:54px 0 0;background:linear-gradient(180deg,#fff,#F8FAFC);color:var(--v7-ink);border-top:4px solid var(--copper);border-bottom:1px solid var(--v7-line)}
+.case-page .case-hero::before,.case-page .case-hero::after{display:none}
+.case-page .case-breadcrumb{margin-bottom:34px;color:#687783;font-size:10px;text-transform:none;letter-spacing:.02em}
+.case-page .case-breadcrumb:hover{color:var(--v7-blue)}
+.case-page .case-hero-layout{grid-template-columns:minmax(0,1.15fr) minmax(300px,.65fr);gap:62px;align-items:start}
+.case-page .case-hero .eyebrow,body[class*="theme-"] .case-hero .eyebrow{display:inline-flex;margin:0 0 14px;padding:6px 9px;border-radius:999px;background:color-mix(in srgb,var(--copper) 11%,white);color:var(--copper-text);font-size:10px;letter-spacing:.08em}
+.case-page .case-hero h1{max-width:900px;color:var(--v7-ink);font-size:clamp(44px,6vw,72px);line-height:.98}
+.case-page .case-deck{max-width:780px;color:#52616C;font-size:18px;line-height:1.65}
+.case-page .case-actions{margin-top:28px}
+.case-page .case-actions .button-primary,body[class*="theme-"] .case-actions .button-primary{background:var(--v7-blue);border-color:var(--v7-blue);color:#fff}
+.case-page .case-actions .button-primary:hover{background:var(--v7-blue-dark);border-color:var(--v7-blue-dark)}
+.case-page .case-actions .button-outline{border-color:#C9D3DA;color:#34424D;background:#fff}
+.case-page .case-actions .button-outline:hover{border-color:#AEBCC6;color:var(--v7-blue-dark)}
+.case-page .case-facts{overflow:hidden;border:1px solid var(--v7-line);border-radius:14px;background:#fff;box-shadow:0 8px 24px rgba(31,35,40,.035)}
+.case-page .case-facts div{grid-template-columns:105px 1fr;padding:13px 15px;border-bottom:1px solid var(--v7-line)}
+.case-page .case-facts div:last-child{border-bottom:0}
+.case-page .case-facts span{color:#65727C;font-size:9px}
+.case-page .case-facts strong{color:#2A3540;font-size:12.5px}
+.case-page .case-metrics{margin-top:50px;border:1px solid var(--v7-line);border-bottom:0;border-radius:15px 15px 0 0;background:#fff;box-shadow:0 -4px 24px rgba(31,35,40,.025)}
+.case-page .case-metrics>div{padding:22px 24px;border-right:1px solid var(--v7-line)}
+.case-page .case-metrics>div:first-child{padding-left:24px}
+.case-page .case-metrics strong,body[class*="theme-"] .case-metrics strong{color:var(--v7-blue-dark);font-size:32px}
+.case-page .case-metrics span{color:#40505C;font-size:11.5px}
+.case-page .case-metrics small{color:#65727C;font-size:9.5px}
+
+.case-page .case-shell{grid-template-columns:205px minmax(0,850px);gap:72px;padding-top:72px;padding-bottom:108px}
+.case-page .case-toc{padding:17px;border:1px solid var(--v7-line);border-radius:13px;background:#fff;box-shadow:0 7px 20px rgba(31,35,40,.03)}
+.case-page .case-toc>p{color:var(--v7-blue);font-size:9.5px}
+.case-page .case-toc nav{border-left:0}
+.case-page .case-toc a{padding:7px 10px;border-radius:7px;color:#66747F;font-size:12px}
+.case-page .case-toc a::before{display:none}
+.case-page .case-toc a:hover,.case-page .case-toc a.is-current{background:#EDF5FC;color:var(--v7-blue-dark);font-weight:700}
+.case-page .toc-stack{border-top-color:var(--v7-line)}
+.case-page .toc-stack span{color:var(--v7-blue-dark)}
+.case-page .toc-stack p{color:#65727C}
+.case-page .case-section{padding-bottom:72px}
+.case-page .case-section+.case-section{padding-top:66px;border-top:1px solid var(--v7-line)}
+.case-page .case-index,body[class*="theme-"] .case-content .case-index{color:var(--v7-blue);font-size:9.5px}
+.case-page .case-section h2{color:var(--v7-ink);font-size:clamp(32px,4.4vw,48px)}
+.case-page .case-section>p:not(.case-index):not(.case-lead):not(.note){color:#465761}
+.case-page .case-lead{color:#465761}
+.case-page .info-card,.case-page .decision,.case-page .results,.case-page .ownership article,.case-page .figure,.case-page .project-summary,.case-page .signal-strip article,.case-page .model-lane,.case-page .glass-type,.case-page .chemistry-notes article,.case-page .attack-step,.case-page .pipe-lane,.case-page .finding-card{border-color:var(--v7-line);box-shadow:0 6px 18px rgba(31,35,40,.025)}
+.case-page .callout,.case-page .method-box,.case-page .resources-box{background:#F7FAFC}
+.case-page .case-transition{border-left-color:var(--v7-blue);color:#687680}
+.case-page .result-callout{background:var(--v7-blue-dark)}
+.case-page .result-callout span{color:#A9C7DE}
+.case-page .result-callout p{color:#D3E2EE}
+.case-page .figure img{background:#fff}
+.case-page .figure figcaption{background:#FBFCFD;color:#5C6B76}
+.case-page .arch-card{background:#0B3555;box-shadow:0 12px 30px rgba(22,58,117,.10)}
+.case-page .case-cta{padding:68px 0;background:var(--v7-blue-dark);color:#fff}
+.case-page .case-cta .section-kicker,body[class*="theme-"] .case-cta .section-kicker{color:#BFDFFF!important}
+.case-page .case-cta .button-primary{background:#fff!important;border-color:#fff!important;color:var(--v7-blue-dark)!important}
+.case-page .case-cta .button-outline{border-color:rgba(255,255,255,.35);color:#fff}
+
+@media(max-width:980px){
+  .case-page .case-hero-layout{grid-template-columns:1fr;gap:34px}
+  .case-page .case-facts{max-width:680px}
+  .case-page .case-shell{grid-template-columns:1fr;gap:0}
+  .case-page .case-toc{display:block;margin-bottom:44px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .case-page .case-toc::-webkit-scrollbar{display:none}
+  .case-page .case-toc>p{display:none}
+  .case-page .case-toc nav{display:flex;flex-direction:row;gap:5px}
+  .case-page .case-toc a{flex:none}
+}
+@media(max-width:700px){
+  .case-page .case-hero{padding-top:42px}
+  .case-page .case-breadcrumb{margin-bottom:25px}
+  .case-page .case-hero h1{font-size:clamp(39px,11.8vw,56px)}
+  .case-page .case-deck{font-size:16.5px}
+  .case-page .case-metrics{grid-template-columns:repeat(2,1fr)}
+  .case-page .case-metrics>div{border-bottom:1px solid var(--v7-line)}
+  .case-page .case-metrics>div:nth-child(2){border-right:0}
+  .case-page .case-metrics>div:nth-child(n+3){border-bottom:0}
+  .case-page .case-shell{padding-top:52px;padding-bottom:82px}
+  .case-page .case-section{padding-bottom:58px}
+  .case-page .case-section+.case-section{padding-top:55px}
+  .case-page .case-cta .wrap{grid-template-columns:1fr;align-items:start}
+  .case-page .case-cta .actions{justify-content:flex-start}
+}
+/* V7 contrast refinements for project accent labels on light surfaces. */
+body.theme-ligolo{--copper-text:#0C6A2D}
+body.theme-bi{--copper-text:#76500F}
+body.theme-dfir{--copper-text:#155F69}
+
+/* ========================================================================
+   V7.1 case-study refinement: professional feed/card reading experience
+   ======================================================================== */
+.case-page.case-v71{background:#EEF2F6}
+.case-page.case-v71 .case-hero{padding:28px 0 0;background:#EEF2F6;border:0}
+.case-page.case-v71 .case-hero>.wrap{
+  padding:30px 30px 0;border:1px solid #D8E0E6;border-radius:16px 16px 0 0;
+  background:#fff;box-shadow:0 4px 18px rgba(31,35,40,.045);
+}
+.case-page.case-v71 .case-breadcrumb{margin-bottom:26px}
+.case-page.case-v71 .case-hero h1{font-size:clamp(40px,5.4vw,64px)}
+.case-page.case-v71 .case-deck{font-size:16.5px}
+.case-page.case-v71 .case-facts{border-radius:12px;box-shadow:none}
+.case-page.case-v71 .case-metrics{margin-top:38px;border-radius:12px 12px 0 0;box-shadow:none}
+.case-page.case-v71 .case-metrics strong{font-size:28px}
+.case-page.case-v71 .case-shell{grid-template-columns:190px minmax(0,870px);gap:28px;padding-top:18px;padding-bottom:22px}
+.case-page.case-v71 .case-toc{top:84px;border-radius:12px;box-shadow:none}
+.case-page.case-v71 .case-content{min-width:0}
+.case-page.case-v71 .case-section{
+  padding:30px;margin:0 0 14px;border:1px solid #D8E0E6!important;border-radius:14px;background:#fff;
+  box-shadow:0 3px 14px rgba(31,35,40,.035);scroll-margin-top:86px;
+}
+.case-page.case-v71 .case-section+.case-section{padding-top:30px}
+.case-page.case-v71 .case-section h2{font-size:clamp(29px,3.8vw,42px);margin-bottom:18px}
+.case-page.case-v71 .case-lead{font-size:16.5px;line-height:1.65}
+.case-page.case-v71 .info-card,
+.case-page.case-v71 .decision,
+.case-page.case-v71 .results,
+.case-page.case-v71 .ownership article,
+.case-page.case-v71 .figure,
+.case-page.case-v71 .project-summary,
+.case-page.case-v71 .signal-strip article,
+.case-page.case-v71 .model-lane,
+.case-page.case-v71 .glass-type,
+.case-page.case-v71 .chemistry-notes article,
+.case-page.case-v71 .attack-step,
+.case-page.case-v71 .pipe-lane,
+.case-page.case-v71 .finding-card{box-shadow:none;border-radius:11px}
+.case-page.case-v71 .case-cta{padding:0 0 30px;background:#EEF2F6}
+.case-page.case-v71 .case-cta .wrap{padding:30px;border-radius:16px;background:#163A75}
+.case-page.case-v71 .case-cta h2{font-size:clamp(30px,4vw,44px)}
+
+@media(max-width:980px){
+  .case-page.case-v71 .case-shell{grid-template-columns:1fr;gap:0;padding-top:14px}
+  .case-page.case-v71 .case-toc{top:auto;margin-bottom:14px;border-radius:12px}
+}
+@media(max-width:700px){
+  .case-page.case-v71 .case-hero{padding-top:14px}
+  .case-page.case-v71 .case-hero>.wrap{padding:20px 16px 0;border-radius:14px 14px 0 0}
+  .case-page.case-v71 .case-hero h1{font-size:clamp(35px,10.5vw,49px)}
+  .case-page.case-v71 .case-metrics{margin-top:28px}
+  .case-page.case-v71 .case-metrics>div{padding:16px}
+  .case-page.case-v71 .case-metrics>div:first-child{padding-left:16px}
+  .case-page.case-v71 .case-metrics strong{font-size:23px}
+  .case-page.case-v71 .case-section{padding:21px 16px;margin-bottom:12px;border-radius:12px}
+  .case-page.case-v71 .case-section+.case-section{padding-top:21px}
+  .case-page.case-v71 .case-cta .wrap{padding:24px 18px;border-radius:14px}
+}
+
+
+/* V7.2.1: restrained accents unique to each project, consistent shared shell */
+body.theme-horti{--case-accent:#A85F26;--case-tint:#FCF3EB}
+body.theme-food{--case-accent:#476A54;--case-tint:#EEF5F0}
+body.theme-bi{--case-accent:#866123;--case-tint:#FCF7EC}
+body.theme-bigdata{--case-accent:#1664AB;--case-tint:#EAF3FB}
+body.theme-ntd{--case-accent:#A9482B;--case-tint:#FAEFEA}
+body.theme-adversarial{--case-accent:#6B4E92;--case-tint:#F3EFF9}
+body.theme-dfir{--case-accent:#216977;--case-tint:#EDF6F8}
+body.theme-spam{--case-accent:#415F92;--case-tint:#EEF3FB}
+body.theme-glass{--case-accent:#69528B;--case-tint:#F5F0FA}
+body.theme-ligolo{--case-accent:#257449;--case-tint:#EDF7F0}
+.case-page.case-v71 .case-hero>.wrap{position:relative;border-top:5px solid var(--case-accent,#1F4E9E);background:linear-gradient(120deg,#fff 0%,#fff 62%,var(--case-tint,#F6F9FC) 100%)}
+.case-page.case-v71 .case-hero .eyebrow{background:var(--case-tint,#F5F8FC);color:var(--case-accent,#1F4E9E)}
+.case-page.case-v71 .case-metrics strong{color:var(--case-accent,#1F4E9E)}
+.case-page.case-v71 .case-toc>p,.case-page.case-v71 .case-index{color:var(--case-accent,#1F4E9E)}
+.case-page.case-v71 .case-toc a.is-current{color:var(--case-accent,#1F4E9E);background:var(--case-tint,#EDF5FC)}
+.case-page.case-v71 .case-content>.case-section:first-child{border-left:4px solid var(--case-accent,#1F4E9E)!important}
+.case-page.case-v71 .case-cta .wrap{border-top:5px solid var(--case-accent,#1F4E9E)}
+@media(max-width:700px){.case-page.case-v71 .case-hero>.wrap{border-top-width:4px}}
+
+/* V7.2.2 : consistent, source-grounded technology listing on every case study */
+.case-hero .v722-tech-stack{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin:0 0 28px;padding:17px 0 0;border-top:1px solid #D8E0E6}
+.case-hero .v722-tech-stack h2{flex:0 0 auto;margin:4px 0 0;font:700 11px/1.45 var(--display);color:#23466A;letter-spacing:0}
+.case-hero .v722-tech-chips{display:flex;align-items:center;flex-wrap:wrap;gap:7px;flex:1}
+.case-hero .v722-tech-chips span{display:inline-block;padding:6px 10px;border:1px solid #CDDCE8;border-radius:999px;background:#F2F7FB;color:#264C69;font:650 10px/1.2 var(--sans)}
+.case-hero .v722-tech-stack p{flex:0 0 100%;margin:0;color:#5A6C77;font:400 11px/1.5 var(--sans)}
+@media(max-width:620px){.case-hero .v722-tech-stack{padding-top:14px;gap:9px}.case-hero .v722-tech-stack h2{flex-basis:100%}.case-hero .v722-tech-chips span{font-size:10px}}
+
+/* V7.2.3: consistent supplied diagrams and unified blue guided-reading controls. */
+.v723-pipeline-figure{margin:26px 0 18px;padding:10px;border:1px solid #c7d9ed;border-radius:14px;background:#edf4fc;overflow:auto}
+.v723-pipeline-figure img{display:block;width:100%;height:auto;min-width:660px}
+.v723-architecture-image{position:relative;display:block;padding:16px;border:1px solid #c8daf0;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 6px 24px rgba(31,78,158,.08)}
+.v723-architecture-image img{display:block;width:100%;height:auto;border-radius:10px}
+.has-js .v723-architecture-image::before,.has-js .v723-architecture-image::after{content:"";position:absolute;z-index:1;top:16px;bottom:16px;width:calc(50% - 16px);pointer-events:none;background:rgba(255,255,255,.6);opacity:0;transition:opacity .22s ease}
+.has-js .v723-architecture-image::before{left:16px}
+.has-js .v723-architecture-image::after{right:16px}
+.has-js .v723-architecture-image[data-focus="before"]::after{opacity:1}
+.has-js .v723-architecture-image[data-focus="after"]::before{opacity:1}
+.case-page .architecture-walkthrough{background:#f3f8fe;border-color:#c5dcf5}
+.case-page .architecture-walkthrough .walkthrough-label{color:#1F4E9E}
+.case-page .architecture-walkthrough .walkthrough-button{border:1px solid #b7cee9;color:#174e86;background:#fff}
+.case-page .architecture-walkthrough .walkthrough-button:hover{background:#e9f3ff;border-color:#1F4E9E}
+.case-page .architecture-walkthrough .walkthrough-button.is-active,.case-page .architecture-walkthrough .walkthrough-button[aria-pressed="true"]{background:#1F4E9E;color:white;border-color:#1F4E9E}
+.case-page .architecture-walkthrough .walkthrough-button:focus-visible{outline:3px solid #69b4fc;outline-offset:3px}
+@media(max-width:620px){.v723-architecture-image{padding:6px;border-radius:10px}.v723-architecture-image img{border-radius:6px}.has-js .v723-architecture-image::before,.has-js .v723-architecture-image::after{top:6px;bottom:6px;width:calc(50% - 6px)}.has-js .v723-architecture-image::before{left:6px}.has-js .v723-architecture-image::after{right:6px}}
+@media(prefers-reduced-motion:reduce){.has-js .v723-architecture-image::before,.has-js .v723-architecture-image::after{transition:none}}
+
+.v723-pipeline-figure,.v723-architecture-image{position:relative}
+.v723-pipeline-figure .v723-case-image-zoom,.v723-architecture-image .v723-case-image-zoom{border-radius:12px}
+
+
+/* V7.2.5 - readable technology chips and clear keyboard focus on case-study pages */
+.case-hero .v722-tech-stack h2{font-size:12px;line-height:1.4}
+.case-hero .v722-tech-chips span{font-size:11.5px;line-height:1.3;padding:7px 11px}
+.case-hero .v722-tech-stack p{font-size:12.5px;line-height:1.6}
+.case-page :is(a,button):focus-visible{outline:3px solid #1F4E9E;outline-offset:3px}
+@media(max-width:620px){.case-hero .v722-tech-chips span{font-size:11px}}
+
+/* V7.2.7: numbered procedure lists */
+.case-steps{margin:8px 0 18px;padding-left:1.4em;display:grid;gap:4px}
+.case-steps li{padding-left:.2em}

@@ -60,6 +60,144 @@
     });
   });
 
+
+
+  // V7.1 project browser: expertise filters + text search.
+  const projectFilters = [...document.querySelectorAll('[data-project-filter]')];
+  const projectCards = [...document.querySelectorAll('.v7-project-card[data-project-category]')];
+  const projectSearch = document.querySelector('[data-project-search]');
+  const projectCount = document.querySelector('[data-project-count]');
+  if (projectCards.length && (projectFilters.length || projectSearch)) {
+    let activeFilter = 'all';
+    let query = '';
+    const locale = document.documentElement.lang === 'en' ? 'en' : 'fr';
+    const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    const applyProjectBrowser = () => {
+      let visible = 0;
+      projectCards.forEach(card => {
+        const categories = (card.dataset.projectCategory || '').split(/\s+/).filter(Boolean);
+        const matchesFilter = activeFilter === 'all' || categories.includes(activeFilter);
+        const matchesQuery = !query || normalize(card.textContent).includes(query);
+        const show = matchesFilter && matchesQuery;
+        card.hidden = !show;
+        card.classList.toggle('is-search-hidden', !show);
+        if (show) visible += 1;
+      });
+      if (projectCount) {
+        const noun = locale === 'fr' ? (visible > 1 ? 'projets' : 'projet') : (visible === 1 ? 'project' : 'projects');
+        projectCount.textContent = `${visible} ${noun}`;
+      }
+    };
+    projectFilters.forEach(button => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.projectFilter || 'all';
+        projectFilters.forEach(control => {
+          const active = control === button;
+          control.classList.toggle('is-active', active);
+          control.setAttribute('aria-pressed', String(active));
+        });
+        applyProjectBrowser();
+      });
+    });
+    if (projectSearch) {
+      projectSearch.addEventListener('input', () => {
+        query = normalize(projectSearch.value);
+        applyProjectBrowser();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) return;
+        const target = event.target;
+        if (target && /input|textarea|select/i.test(target.tagName)) return;
+        event.preventDefault();
+        projectSearch.focus();
+      });
+    }
+    applyProjectBrowser();
+  }
+
+  // Site-wide back-to-top control. It stays out of the way until useful.
+  const backToTop = document.createElement('button');
+  backToTop.type = 'button';
+  backToTop.className = 'back-to-top';
+  backToTop.setAttribute('aria-label', document.documentElement.lang === 'fr' ? 'Revenir en haut de la page' : 'Back to top');
+  backToTop.setAttribute('title', document.documentElement.lang === 'fr' ? 'Revenir en haut' : 'Back to top');
+  backToTop.innerHTML = '<span aria-hidden="true">↑</span>';
+  document.body.appendChild(backToTop);
+  const updateBackToTop = () => backToTop.classList.toggle('is-visible', window.scrollY > 560);
+  window.addEventListener('scroll', updateBackToTop, { passive: true });
+  updateBackToTop();
+  backToTop.addEventListener('click', () => {
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    window.setTimeout(() => {
+      const focusTarget = document.querySelector('header a, main a, main button');
+      if (focusTarget) focusTarget.focus({ preventScroll: true });
+    }, reduced ? 0 : 450);
+  });
+
+
+  // V7.2.2: accessible homepage project-image zoom, with ESC / backdrop / focus restoration.
+  const zoomControls = [...document.querySelectorAll('[data-portfolio-lightbox-src], [data-portfolio-lightbox-architecture]')];
+  if (zoomControls.length) {
+    const isFrench = document.documentElement.lang === 'fr';
+    const modal = document.createElement('div');
+    modal.className = 'v722-modal';
+    modal.hidden = true;
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', isFrench ? 'Image agrandie' : 'Enlarged image');
+    const panel = document.createElement('div');
+    panel.className = 'v722-modal-panel';
+    const close = document.createElement('button');
+    close.className = 'v722-modal-close';
+    close.type = 'button';
+    close.textContent = '×';
+    close.setAttribute('aria-label', isFrench ? 'Fermer l’image agrandie' : 'Close enlarged image');
+    const body = document.createElement('div');
+    body.className = 'v722-modal-body';
+    panel.append(close, body);
+    modal.append(panel);
+    document.body.append(modal);
+    let origin = null;
+    let previousOverflow = '';
+    const shut = () => {
+      if (modal.hidden) return;
+      modal.hidden = true;
+      body.replaceChildren();
+      document.body.style.overflow = previousOverflow;
+      if (origin && origin.isConnected) origin.focus({ preventScroll: true });
+      origin = null;
+    };
+    close.addEventListener('click', shut);
+    modal.addEventListener('click', e => { if (e.target === modal) shut(); });
+    modal.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { e.preventDefault(); shut(); return; }
+      if (e.key === 'Tab') { e.preventDefault(); close.focus(); }
+    });
+    zoomControls.forEach(control => control.addEventListener('click', () => {
+      origin = control;
+      body.replaceChildren();
+      if (control.hasAttribute('data-portfolio-lightbox-architecture')) {
+        const original = control.closest('figure');
+        const copy = original.cloneNode(true);
+        copy.querySelectorAll('.v722-zoom-trigger').forEach(b => b.remove());
+        copy.classList.add('v722-modal-architecture');
+        body.append(copy);
+      } else {
+        const pic = document.createElement('img');
+        pic.className = 'v722-modal-image';
+        if (control.dataset.zoomNatural === 'yes') pic.classList.add('v723-modal-diagram');
+        pic.src = control.dataset.portfolioLightboxSrc;
+        pic.alt = control.dataset.portfolioLightboxCaption || control.closest('figure, .v72-proof-panel')?.querySelector('img')?.alt || '';
+        body.append(pic);
+      }
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      modal.hidden = false;
+      close.focus();
+    }));
+  }
+
   const year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 
