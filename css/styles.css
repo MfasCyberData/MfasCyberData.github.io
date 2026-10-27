@@ -1830,3 +1830,25 @@ body.site-v71 :where(a,button,input):focus-visible{outline:3px solid rgba(31,78,
 
 /* V7.2.7: scope after the role title */
 .v7-role-scope{display:block;margin-top:6px;font-size:.62em;font-weight:500;color:var(--muted,#5B6972);letter-spacing:0}
+
+
+/* V7.3.1 editorial/UI refinements (27 October 2026) */
+.home-v71 .v7-role-scope {letter-spacing:normal;word-spacing:normal}
+.home-v71 .v7-bridge .v7-section-head>p {max-width:540px;line-height:1.66;letter-spacing:0;font-size:14px}
+.home-v71 .v7-work-head>p {max-width:480px;line-height:1.65}
+.home-v71 .v7-project-toolbar {grid-template-columns:minmax(190px,1fr) auto auto;align-items:center;gap:14px}
+.home-v71 .v731-project-counter {justify-self:end;align-self:center}
+.home-v71 .v731-project-counter .v71-project-count {font-size:11px;letter-spacing:0;display:inline-flex;padding:8px 11px;background:#F2F6FA;border:1px solid #D5E0E8;border-radius:999px;color:#405666}
+.home-v71 .education-panel .edu-item.highlight>span:first-child {display:inline-block;padding:5px 8px;border-radius:6px;background:#E6F0FA;color:#004182;font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:none}
+.case-page.theme-bi .v731-compact-evidence {background:#F5F8FC;grid-column:1/-1}
+.case-page.theme-bi .v731-compact-evidence .v731-evidence-image-wrap {display:flex;align-items:center;justify-content:center;padding:18px 16px;background:linear-gradient(155deg,#F1F5FA,#F9FBFD)}
+.case-page.theme-bi .v731-compact-evidence .v731-evidence-image-wrap img {display:block;width:100%!important;max-width:1000px;max-height:none!important;height:auto!important;max-inline-size:none;box-shadow:0 6px 24px rgba(16,48,76,.12);border-radius:7px;border:1px solid #D6E1ED;background:#fff}
+@media(max-width:1000px) {.home-v71 .v7-project-toolbar {grid-template-columns:1fr auto;gap:12px}.home-v71 .v7-project-toolbar>.v7-filter-group{grid-column:1/-1}}
+@media(max-width:680px) {.home-v71 .v7-project-toolbar {grid-template-columns:1fr}.home-v71 .v731-project-counter {justify-self:start}.home-v71 .v7-project-toolbar>.v7-filter-group{grid-column:auto}.home-v71 .v7-bridge .v7-section-head>p {font-size:13.5px;line-height:1.62}.case-page.theme-bi .v731-compact-evidence .v731-evidence-image-wrap{padding:10px}}
+
+
+/* V7.3.3 QA: accessible detail zoom for original Alshadows report captures. */
+.case-page.theme-bi .project-gallery figure.figure {position:relative}
+.case-page.theme-bi .project-gallery .v733-case-zoom{position:absolute;top:15px;right:15px;z-index:2;display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 12px;border:1px solid #b5c8df;border-radius:9px;background:rgba(255,255,255,.97);box-shadow:0 3px 12px rgba(20,45,75,.12);color:#0b4b91;font:700 12px/1.2 var(--sans);cursor:pointer}
+.case-page.theme-bi .project-gallery .v733-case-zoom:hover,.case-page.theme-bi .project-gallery .v733-case-zoom:focus-visible{border-color:#0A66C2;outline:2px solid #0A66C2;outline-offset:2px}
+@media(max-width:600px){.case-page.theme-bi .project-gallery .v733-case-zoom{top:10px;right:10px;min-height:36px}}

@@ -62,23 +62,19 @@
 
 
 
-  // V7.1 project browser: expertise filters + text search.
+  // Expertise filters and visible project counter.
   const projectFilters = [...document.querySelectorAll('[data-project-filter]')];
   const projectCards = [...document.querySelectorAll('.v7-project-card[data-project-category]')];
-  const projectSearch = document.querySelector('[data-project-search]');
   const projectCount = document.querySelector('[data-project-count]');
-  if (projectCards.length && (projectFilters.length || projectSearch)) {
+  if (projectCards.length && projectFilters.length) {
     let activeFilter = 'all';
-    let query = '';
     const locale = document.documentElement.lang === 'en' ? 'en' : 'fr';
-    const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
     const applyProjectBrowser = () => {
       let visible = 0;
       projectCards.forEach(card => {
         const categories = (card.dataset.projectCategory || '').split(/\s+/).filter(Boolean);
         const matchesFilter = activeFilter === 'all' || categories.includes(activeFilter);
-        const matchesQuery = !query || normalize(card.textContent).includes(query);
-        const show = matchesFilter && matchesQuery;
+        const show = matchesFilter;
         card.hidden = !show;
         card.classList.toggle('is-search-hidden', !show);
         if (show) visible += 1;
@@ -99,19 +95,6 @@
         applyProjectBrowser();
       });
     });
-    if (projectSearch) {
-      projectSearch.addEventListener('input', () => {
-        query = normalize(projectSearch.value);
-        applyProjectBrowser();
-      });
-      document.addEventListener('keydown', event => {
-        if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) return;
-        const target = event.target;
-        if (target && /input|textarea|select/i.test(target.tagName)) return;
-        event.preventDefault();
-        projectSearch.focus();
-      });
-    }
     applyProjectBrowser();
   }
 
