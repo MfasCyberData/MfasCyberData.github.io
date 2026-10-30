@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mfascyberdata.github.io/sitemap.xml
+Sitemap: https://sidikmbohou.pages.dev/sitemap.xml
