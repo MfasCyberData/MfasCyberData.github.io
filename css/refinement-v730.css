@@ -1,7 +1,7 @@
 /* V7.3.0 — editorial design/legibility refinement on V7.2.8 MODIFIED.
    No new images; native case-story palettes are intentional and complementary. */
-:root{--v730-edge:#C6D4E0;--v730-ink:#1D3041;--v730-navy:#163A75;--v730-bg:#EAF0F5;--v730-soft-shadow:0 9px 26px rgba(29,54,83,.065)}
-body.site-v71{--v71-canvas:#EAF0F5;--v71-line:#C9D6E2;--v71-shadow:0 5px 20px rgba(23,45,69,.065);--v71-shadow-hover:0 15px 34px rgba(23,45,69,.12);color:#273543}
+:root{--v730-edge:#C6D4E0;--v730-ink:#1D3041;--v730-navy:#163A75;--v730-bg:#F3F6F9;--v730-soft-shadow:0 9px 26px rgba(29,54,83,.065)}
+body.site-v71{--v71-canvas:#F3F6F9;--v71-line:#C9D6E2;--v71-shadow:0 5px 20px rgba(23,45,69,.065);--v71-shadow-hover:0 15px 34px rgba(23,45,69,.12);color:#273543}
 .site-v71 .site-nav{border-bottom:1px solid #C7D6E5;background:rgba(255,255,255,.97)}
 .site-v71 .brand-mark{background:#1F4E9E;color:#fff}
 .site-v71 .nav-cta{background:#1F4E9E}
@@ -74,8 +74,8 @@ body.theme-dfir{--case-accent:#246F7B;--case-tint:#EDF7F8;--case-border:#AAD1D5}
 body.theme-spam{--case-accent:#3C5B90;--case-tint:#EEF2FA;--case-border:#B2C4DC}
 body.theme-glass{--case-accent:#725281;--case-tint:#F6EFF8;--case-border:#CEB8D5}
 body.theme-ligolo{--case-accent:#2D724D;--case-tint:#EDF7F0;--case-border:#AACDB5}
-.case-page.case-v71{background:#EAF0F5}
-.case-page.case-v71 .case-hero,.case-page.case-v71 .case-cta{background:#EAF0F5}
+.case-page.case-v71{background:#F3F6F9}
+.case-page.case-v71 .case-hero,.case-page.case-v71 .case-cta{background:#F3F6F9}
 .case-page.case-v71 .case-hero>.wrap{border:1px solid #BBCEDC;border-top:6px solid var(--case-accent);background:linear-gradient(117deg,#fff 0%,#fff 54%,var(--case-tint) 100%);box-shadow:0 8px 23px rgba(29,54,83,.065)}
 .case-page.case-v71 .case-hero h1{line-height:1.06;letter-spacing:-.038em;font-size:clamp(37px,4.7vw,57px);color:#1B2F40}
 .case-page.case-v71 .case-deck{color:#4A6070;line-height:1.58;font-size:16px}
@@ -155,3 +155,34 @@ body.theme-ligolo{--case-accent:#2D724D;--case-tint:#EDF7F0;--case-border:#AACDB
  .site-v71.beyond-page .beyond-copy p{font-size:15px;line-height:1.6}
 }
 @media(prefers-reduced-motion:reduce){.site-v71 *{scroll-behavior:auto!important;transition:none!important}}
+
+
+/* V7.3.6 — fond plus lumineux (#F3F6F9 au lieu de #EAF0F5) et bordures neutres légèrement renforcées
+   pour garder des cartes bien délimitées. Les bordures supérieures colorées (accents) ne sont pas modifiées. */
+.site-v71 .v7-proofbar,.site-v71 .v7-hero-grid,.site-v71 .v7-capability-grid article,.site-v71 .education-panel{border-color:#B3C5D6}
+.site-v71 .v7-domain-card{border-right-color:#B3C5D6;border-bottom-color:#B3C5D6;border-left-color:#B3C5D6}
+.home-v71 .v7-featured-card,.home-v71 .v7-project-card{border-right-color:#B3C5D6!important;border-bottom-color:#B3C5D6!important;border-left-color:#B3C5D6!important}
+.case-page.case-v71 .case-facts{border-color:#B3C5D6}
+.case-page.case-v71 .case-section{border-top-color:#B3C5D6!important;border-right-color:#B3C5D6!important;border-bottom-color:#B3C5D6!important}
+.case-page.case-v71 .case-hero>.wrap{border-right-color:#B3C5D6;border-bottom-color:#B3C5D6;border-left-color:#B3C5D6}
+
+
+/* V7.3.7 — contrast / mobile hierarchy / readability QA, 2026-11-02.
+   Scope is intentionally narrow: existing art direction and case accents preserved. */
+.home-v71 .v7-shared-card span{color:#435769}
+@media(max-width:620px){
+  /* The offer and the candidate's name must precede the supporting profile card. */
+  .home-v71 .v7-hero-copy{order:0}
+  .home-v71 .v7-profile-card{order:1;border-top:1px solid #B3C5D6;border-bottom:0}
+  .home-v71 .v7-hero-grid{gap:0}
+}
+/* 404 pages were rendered white-on-white after the earlier card background refresh. */
+.error-v7 .error-card{padding:clamp(26px,5vw,56px);border-radius:18px;color:#223647}
+.error-v7 .error-card h1{color:#1B3349;line-height:1.04;font-size:clamp(38px,7vw,75px)}
+.error-v7 .error-card p:not(.section-kicker){color:#465B6B;line-height:1.6}
+.error-v7 .error-language{border:1px solid #B3C5D6;background:#F3F6F9;border-radius:100px}
+.error-v7 .error-language a{color:#3D5164;min-width:48px;min-height:36px}
+.error-v7 .error-language a[aria-current="page"]{color:#fff;background:#1F4E9E;border-radius:100px}
+/* Secondary editorial text tuned for minimum small-text contrast on light cards. */
+.site-v71.beyond-page .beyond-story .beyond-number{color:#73541E}
+.site-v71.beyond-page .beyond-hero-photo figcaption{color:#536572}
