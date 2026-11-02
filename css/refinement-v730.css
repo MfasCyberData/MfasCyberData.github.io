@@ -186,3 +186,16 @@ body.theme-ligolo{--case-accent:#2D724D;--case-tint:#EDF7F0;--case-border:#AACDB
 /* Secondary editorial text tuned for minimum small-text contrast on light cards. */
 .site-v71.beyond-page .beyond-story .beyond-number{color:#73541E}
 .site-v71.beyond-page .beyond-hero-photo figcaption{color:#536572}
+
+/* V7.4.0 — les images portent width/height (stabilité de mise en page) ; :where() = priorité nulle, toute hauteur CSS existante reste prioritaire. */
+:where(img){height:auto}
+
+/* V7.4.0 — accessibilité : contraste des petits textes au-dessus du seuil WCAG AA (4,5:1), dans la teinte d'origine. */
+.academic-overview-ranking em{color:#5B7883!important}
+.arch-node small{color:#8AA2AA}
+.network-link span{color:#637379}
+body.theme-bi{--engineering-dark:#896014;--copper-text:#896014}
+body.theme-dfir{--engineering-dark:#1B727E;--copper-text:#1B727E}
+
+/* V7.4.0 — ancien style en ligne converti en classe (compatibilité avec la politique de sécurité du contenu). */
+.section-kicker.kicker-amber{color:#E2A63A}
