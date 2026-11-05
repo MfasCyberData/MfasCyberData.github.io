@@ -1,0 +1,228 @@
+/* Portfolio Analytics Engineer — refonte « Lignage » (V8.0).
+   Le site se lit comme un graphe de lignage : sources → modèles → usages.
+   Chargée en dernier ; redéfinit les variables communes puis restyle les composants. Aucun contenu modifié. */
+
+/* 1. Jetons */
+html body.site-v71 {
+  --ln-canvas: #FAF9F6;
+  --ln-surface: #FFFFFF;
+  --ln-ink: #0F1A2A;
+  --ln-text: #2A3443;
+  --ln-muted: #56606E;
+  --ln-line: #E7E2D8;
+  --ln-line-strong: #D2CBBD;
+  --ln-dot: #DDD6C8;
+  --ln-blue: #1F4E9E;
+  --ln-blue-dark: #163A75;
+  --ln-blue-soft: #E9EFF8;
+  --ln-green: #17734F;
+  --ln-amber: #E3A33A;
+  --ln-amber-text: #93570A;
+  --ln-amber-soft: #FDF3E2;
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --paper: var(--ln-canvas);
+  --v7-bg: var(--ln-canvas);
+  --v71-canvas: var(--ln-canvas);
+  --v730-bg: var(--ln-canvas);
+  --line: var(--ln-line);
+  --v7-line: var(--ln-line);
+  --v71-line: var(--ln-line);
+  --v730-edge: var(--ln-line);
+  --v7-line-strong: var(--ln-line-strong);
+  --v7-ink: var(--ln-ink);
+  --v730-ink: var(--ln-ink);
+  --ink-text: var(--ln-text);
+  --v7-muted: var(--ln-muted);
+  --muted: var(--ln-muted);
+  --shadow: none;
+  --shadow-soft: none;
+  --v71-shadow: none;
+  --v71-shadow-hover: none;
+  --v730-soft-shadow: none;
+  --radius: 10px;
+  background: var(--ln-canvas);
+  color: var(--ln-text);
+  font-family: var(--sans);
+  font-feature-settings: "ss01", "tnum" 0;
+  -webkit-font-smoothing: antialiased;
+}
+.site-v71 h1, .site-v71 h2, .site-v71 h3 { font-family: var(--display); letter-spacing: -0.025em; color: var(--ln-ink); }
+.site-v71 :focus-visible { outline: 3px solid var(--ln-blue); outline-offset: 3px; }
+
+/* 2. Navigation */
+.site-v71 .site-nav { background: rgba(250, 249, 246, 0.95); border-bottom: 1px solid var(--ln-line); box-shadow: none; }
+@supports (backdrop-filter: blur(8px)) { .site-v71 .site-nav { background: rgba(250, 249, 246, 0.84); backdrop-filter: blur(10px); } }
+.site-v71 .brand-mark { border-radius: 6px; background: var(--ln-ink); color: #FFFFFF; font-family: var(--mono); }
+.site-v71 .brand-copy small { font-family: var(--mono); letter-spacing: 0.06em; }
+.site-v71 .nav-cta, .site-v71 .site-nav .language-switcher, .site-v71 .site-nav .language-switcher a { border-radius: 6px; }
+.site-v71 .nav-cta { background: var(--ln-ink) !important; box-shadow: none !important; }
+.site-v71 .nav-cta:hover { background: var(--ln-blue) !important; }
+
+/* 3. Hero : canevas pointillé + graphe de lignage */
+.home-v71 .v7-hero { position: relative; isolation: isolate; background: transparent; }
+.home-v71 .v7-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: radial-gradient(var(--ln-dot) 1.1px, transparent 1.4px); background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%); }
+.home-v71 .v7-hero-grid { background: transparent !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important; }
+.home-v71 .v7-hero h1 { font-size: clamp(40px, 4.2vw, 58px); line-height: 0.98; font-weight: 700; letter-spacing: -0.04em; }
+.home-v71 .v7-hero h1 span { color: var(--ln-blue); }
+.home-v71 .v7-role { font-weight: 600; letter-spacing: -0.015em; }
+.home-v71 .v7-role-scope { font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; color: var(--ln-muted); }
+.home-v71 .v7-hero h2 { color: var(--ln-ink); font-weight: 600; letter-spacing: -0.03em; }
+.home-v71 .v7-status { border-radius: 6px; background: var(--ln-surface); border: 1px solid var(--ln-line); font-family: var(--mono); letter-spacing: 0.01em; box-shadow: none; }
+.home-v71 .v7-profile-card { border-radius: 12px; border: 1px solid var(--ln-line-strong); box-shadow: 0 1px 0 rgba(15, 26, 42, 0.04); background: var(--ln-surface); overflow: hidden; }
+.home-v71 .v7-proofbar { background: var(--ln-surface); border: 1px solid var(--ln-line-strong); border-radius: 10px; box-shadow: none; }
+.home-v71 .v7-proofbar strong { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.ln-lineage { display: block; margin-top: 26px; margin-bottom: 4px; }
+.ln-lineage svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ln-edge { fill: none; stroke: var(--ln-line-strong); stroke-width: 1.5; }
+.ln-flow { fill: none; stroke: var(--ln-blue); stroke-width: 1.6; stroke-dasharray: 3 9; animation: ln-flow 2.6s linear infinite; }
+.ln-node { fill: var(--ln-surface); stroke: var(--ln-ink); stroke-width: 1.4; }
+.ln-node-src { fill: var(--ln-canvas); stroke: var(--ln-line-strong); }
+.ln-node-out { fill: var(--ln-ink); stroke: var(--ln-ink); }
+.ln-node-key { fill: var(--ln-blue); stroke: var(--ln-blue); }
+.ln-bar { fill: var(--ln-line-strong); }
+.ln-bar-out { fill: #FFFFFF; opacity: 0.85; }
+@keyframes ln-flow { to { stroke-dashoffset: -24; } }
+@media (prefers-reduced-motion: reduce) { .ln-flow { animation: none; } }
+
+/* 4. Sections : étapes du graphe, titres en nœuds */
+.home-v71 .v7-section, .home-v71 .experience-section, .home-v71 .v7-beyond-teaser { background: transparent !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important; }
+.home-v71 .v7-section::before, .home-v71 .experience-section::before, .home-v71 .v7-beyond-teaser::before { display: none !important; }
+.home-v71 .v7-section > .wrap, .home-v71 .experience-section > .wrap, .home-v71 .v7-beyond-teaser > .wrap { background: transparent !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important; }
+.home-v71 #expertise, .home-v71 #cases, .home-v71 #skills, .home-v71 #background, .home-v71 .v7-beyond-teaser { border-top: 1px solid var(--ln-line) !important; }
+.site-v71 .v7-kicker, .site-v71 .section-kicker, .site-v71 .contact-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ln-blue-dark); }
+.site-v71 .v7-kicker::before, .site-v71 .section-kicker::before { content: ""; flex: none; width: 9px; height: 9px; border: 2px solid var(--ln-blue); border-radius: 2px; background: var(--ln-surface); }
+.site-v71 .v7-kicker::after, .site-v71 .section-kicker::after { content: ""; flex: 0 1 72px; height: 1px; background: var(--ln-line-strong); }
+.home-v71 .v7-section h2, .home-v71 .experience-section h2 { font-weight: 700; letter-spacing: -0.035em; }
+.home-v71 .v7-section h2 span, .home-v71 .experience-section h2 span { color: var(--ln-blue); }
+
+/* 5. Cartes, badges, puces, filtres */
+.home-v71 .v7-domain-card, .home-v71 .v7-shared-card, .home-v71 .v7-featured-card, .home-v71 .v7-project-card,
+.home-v71 .v7-capability-grid > article, .home-v71 .education-panel, .home-v71 .work-ethos, .home-v71 .timeline-item,
+.home-v71 .v7-acquisition, .home-v71 .academic-proof {
+  border-radius: 10px !important; box-shadow: none !important; border-right-color: var(--ln-line-strong) !important; border-bottom-color: var(--ln-line-strong) !important; border-left-color: var(--ln-line-strong) !important; }
+.home-v71 .v7-featured-card, .home-v71 .v7-project-card, .home-v71 .v7-capability-grid > article, .home-v71 .v7-domain-card { background: var(--ln-surface) !important; transition: border-color 0.15s ease, transform 0.15s ease; }
+.home-v71 .v7-featured-card:hover, .home-v71 .v7-project-card:hover, .home-v71 .v7-capability-grid > article:hover { border-color: var(--ln-ink) !important; transform: translateY(-2px); }
+.home-v71 .v7-card-media { border-radius: 6px !important; background: var(--ln-canvas) !important; border: 1px solid var(--ln-line) !important; }
+.home-v71 .v7-card-metrics strong { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.site-v71 .v7-badge { border-radius: 4px !important; font-family: var(--mono); letter-spacing: 0.06em; }
+.site-v71 .v7-chip-row > * { border-radius: 4px !important; font-family: var(--mono); background: var(--ln-canvas) !important; border-color: var(--ln-line-strong) !important; color: var(--ln-ink) !important; }
+.home-v71 .v7-filter-group button { border-radius: 6px !important; font-family: var(--mono); }
+.home-v71 .v7-filter-group button[aria-pressed="true"] { background: var(--ln-ink) !important; border-color: var(--ln-ink) !important; color: #FFFFFF !important; }
+.site-v71 .button, .site-v71 .btn, .home-v71 .v7-hero-actions a { border-radius: 6px !important; }
+
+/* 6. Parcours : arête de lignage et nœuds carrés */
+.home-v71 .timeline-item { background: var(--ln-surface) !important; }
+.home-v71 .timeline-item::before { border-radius: 2px !important; background: var(--ln-surface) !important; border: 2px solid var(--ln-blue) !important; box-shadow: none !important; }
+.home-v71 .timeline-item.current::before { background: var(--ln-blue) !important; }
+
+/* 7. Contact : sortie du graphe */
+.home-v71 .contact-section { position: relative; isolation: isolate; background: var(--ln-ink) !important; }
+.home-v71 .contact-section::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.10) 1.1px, transparent 1.4px); background-size: 22px 22px; }
+.home-v71 .contact-section .contact-kicker { color: #C9D7EE; }
+.home-v71 .contact-section .button, .home-v71 .contact-section a.button { border-radius: 6px !important; }
+
+/* 8. Pages d’études de cas et pages annexes */
+.case-page.site-v71 .case-hero, .site-v71 .case-hero { border-radius: 12px !important; box-shadow: none !important; }
+.site-v71 .case-section, .site-v71 .case-toc, .site-v71 .case-facts, .site-v71 .case-cta { box-shadow: none !important; }
+.site-v71 .case-section { border-radius: 12px !important; }
+.site-v71 .case-toc { border-radius: 10px !important; }
+.site-v71 .case-breadcrumb { font-family: var(--mono); letter-spacing: 0.02em; }
+.ln-edge-key { stroke: var(--ln-blue); stroke-opacity: 0.35; }
+.ln-node-key + .ln-bar, .ln-node-key + .ln-bar-out { fill: #FFFFFF; }
+
+/* Passe 2 — filets en dégradé hérités, en-tête de la carte de profil */
+.home-v71 .v7-section > .wrap::before, .home-v71 .experience-section > .wrap::before, .home-v71 .v7-beyond-teaser > .wrap::before { display: none !important; }
+.home-v71 .v71-profile-cover { background: var(--ln-ink) !important; background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.1px, transparent 1.4px) !important; background-size: 16px 16px !important; }
+.home-v71 .v71-profile-cover::before, .home-v71 .v71-profile-cover::after { background: rgba(255, 255, 255, 0.10) !important; border-color: rgba(255, 255, 255, 0.22) !important; }
+
+/* Passe 3 — contraste du sous-titre de la marque ; schéma réseau Ligolo-ng entre 901 et 1260 px (défaut hérité de la V7.4.0) */
+html body.site-v71 .brand-copy small { color: var(--ln-muted); }
+@media (min-width: 901px) and (max-width: 1260px) {
+  .site-v71 .network-diagram { grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1.15fr) 72px minmax(0, 1fr); }
+  .site-v71 .network-node { overflow-wrap: anywhere; }
+}
+
+/* Passe 4 — bouton Contact de « Au-delà du CV » aligné sur les autres pages */
+html body.site-v71.beyond-page .site-nav nav > a.nav-cta { border-radius: 6px !important; background: var(--ln-ink) !important; box-shadow: none !important; }
+html body.site-v71.beyond-page .site-nav nav > a.nav-cta:hover { background: var(--ln-blue) !important; }
+
+/* ===================== V8.1 — clarté, rayonnement, cohérence ===================== */
+
+/* A. Halos de lumière (décoratifs, derrière le contenu) */
+.home-v71 .v7-hero::before { content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none;
+  background: radial-gradient(640px 320px at 86% 8%, rgba(47, 107, 214, 0.13), transparent 70%),
+              radial-gradient(520px 280px at 6% 92%, rgba(227, 163, 58, 0.12), transparent 70%); }
+.home-v71 .contact-section::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(700px 340px at 12% 0%, rgba(47, 107, 214, 0.35), transparent 70%),
+              radial-gradient(520px 300px at 92% 100%, rgba(227, 163, 58, 0.18), transparent 70%); }
+.ln-node-out { fill: var(--ln-amber); stroke: var(--ln-amber); }
+.ln-node-out + .ln-bar-out { fill: #FFFFFF; opacity: 0.95; }
+.home-v71 .v7-proofbar > * strong { color: var(--ln-ink); }
+.home-v71 .v7-status span { background: var(--ln-green) !important; box-shadow: 0 0 0 3px rgba(23, 115, 79, 0.16) !important; }
+
+/* B. Système de boutons unique */
+html body.site-v71 .button-primary, html body.site-v71 .v7-btn-primary, html body.site-v71 .button-dark, html body.site-v71 .site-nav .nav-cta,
+html body.site-v71.beyond-page .site-nav nav > a.nav-cta {
+  background: var(--ln-blue) !important; color: #FFFFFF !important; border: 1px solid var(--ln-blue) !important; border-radius: 6px !important; box-shadow: none !important; }
+html body.site-v71 .button-primary:hover, html body.site-v71 .v7-btn-primary:hover, html body.site-v71 .button-dark:hover, html body.site-v71 .site-nav .nav-cta:hover,
+html body.site-v71.beyond-page .site-nav nav > a.nav-cta:hover { background: var(--ln-blue-dark) !important; border-color: var(--ln-blue-dark) !important; }
+html body.site-v71 .button-outline, html body.site-v71 .v7-btn-secondary {
+  background: var(--ln-surface) !important; color: var(--ln-ink) !important; border: 1px solid var(--ln-line-strong) !important; border-radius: 6px !important; box-shadow: none !important; }
+html body.site-v71 .button-outline:hover, html body.site-v71 .v7-btn-secondary:hover { border-color: var(--ln-ink) !important; }
+/* sur fond sombre : versions inversées */
+html body.site-v71 .contact-section .button-primary, html body.site-v71 .case-cta .button-primary, html body.site-v71 .bi-live-panel .button-primary,
+html body.site-v71 .contact-section a.button:first-child {
+  background: #FFFFFF !important; color: var(--ln-blue-dark) !important; border-color: #FFFFFF !important; }
+html body.site-v71 .contact-section .button-primary:hover, html body.site-v71 .case-cta .button-primary:hover, html body.site-v71 .bi-live-panel .button-primary:hover { background: var(--ln-blue-soft) !important; }
+html body.site-v71 .contact-section .button-outline, html body.site-v71 .case-cta .button-outline, html body.site-v71 .bi-live-panel .button-outline {
+  background: transparent !important; color: #FFFFFF !important; border-color: rgba(255, 255, 255, 0.55) !important; }
+html body.site-v71 .contact-section .button-outline:hover, html body.site-v71 .case-cta .button-outline:hover { background: rgba(255, 255, 255, 0.12) !important; border-color: #FFFFFF !important; }
+/* logo et boutons d’agrandissement */
+html body.site-v71 .brand-mark { background: var(--ln-ink) !important; color: #FFFFFF !important; border: 0 !important; box-shadow: none !important; }
+html body.site-v71.beyond-page .site-nav { background: rgba(250, 249, 246, 0.95) !important; border-bottom: 1px solid var(--ln-line) !important; }
+/* la couche cliquable reste transparente sur toute l’image ; seule l’icône ⤢ (::after) prend le style encre */
+html body.site-v71 button.v722-zoom-trigger { background: transparent !important; box-shadow: none !important; }
+html body.site-v71 button.v722-zoom-trigger::after { background: var(--ln-ink) !important; color: #FFFFFF !important; border-radius: 6px !important; box-shadow: 0 1px 3px rgba(15, 26, 42, 0.25) !important; }
+html body.site-v71 button.v722-zoom-trigger:hover::after, html body.site-v71 button.v722-zoom-trigger:focus-visible::after { background: var(--ln-blue) !important; }
+html body.site-v71 .v7-filter-group button:not([aria-pressed="true"]) { color: var(--ln-ink) !important; background: var(--ln-surface) !important; border-color: var(--ln-line-strong) !important; }
+
+/* C. Bas des études de cas : bloc sombre lisible, sur le canevas */
+html body.site-v71 .case-cta { background: var(--ln-canvas) !important; }
+html body.site-v71 .case-cta > .wrap { background: linear-gradient(125deg, #0F1A2A 0%, #163A75 100%) !important; border: 0 !important; box-shadow: none !important; border-radius: 12px !important; }
+html body.site-v71 .case-cta h2 { color: #FFFFFF !important; }
+html body.site-v71 .case-cta .section-kicker { color: #F2C46D !important; }
+html body.site-v71 .case-cta .section-kicker::before { border-color: #F2C46D; background: transparent; }
+html body.site-v71 .case-cta .section-kicker::after { background: rgba(255, 255, 255, 0.3); }
+html body.site-v71 .case-cta p:not(.section-kicker) { color: #DCE6F5 !important; }
+
+/* D. Parcours : un cadre par colonne, mêmes hauteurs */
+.home-v71 .experience-layout { align-items: stretch !important; }
+.home-v71 .experience-layout > .timeline { background: var(--ln-surface); border: 1px solid var(--ln-line-strong); border-radius: 10px; padding: 26px 28px 26px 30px; box-sizing: border-box; align-self: stretch; }
+.home-v71 .experience-layout > .education-panel { align-self: stretch; border: 1px solid var(--ln-line-strong) !important; border-radius: 10px !important; }
+.home-v71 .timeline-item { background: transparent !important; border: 0 !important; border-bottom: 1px solid var(--ln-line) !important; border-radius: 0 !important; padding-bottom: 18px !important; margin-bottom: 18px !important; }
+.home-v71 .timeline-item:last-child { border-bottom: 0 !important; padding-bottom: 0 !important; margin-bottom: 0 !important; }
+
+/* E. Titres de section strictement identiques */
+.home-v71 #expertise h2, .home-v71 #cases .v7-section-head h2, .home-v71 #skills h2, .home-v71 #background h2:not(.timeline h2) {
+  font-size: clamp(32px, 3.2vw, 46px) !important; line-height: 1.06 !important; font-weight: 700 !important; letter-spacing: -0.035em !important; }
+
+/* V8.1 — le panneau du rapport Power BI est clair : bouton primaire standard */
+html body.site-v71 .bi-live-panel .button-primary { background: var(--ln-blue) !important; color: #FFFFFF !important; border-color: var(--ln-blue) !important; }
+html body.site-v71 .bi-live-panel .button-primary:hover { background: var(--ln-blue-dark) !important; border-color: var(--ln-blue-dark) !important; }
+
+/* V8.1 — ancres : le titre de section ne passe plus sous la barre collante */
+html body.home-v71 main section[id] { scroll-margin-top: 92px !important; }
+
+/* V8.1 — zones cliquables : 32 px sur ordinateur, 44 px au doigt (WCAG 2.5.8 et recommandations tactiles) */
+html body.site-v71 .case-breadcrumb, html body.site-v71 .v7-project-card a, html body.site-v71 .v7-card-footer a,
+html body.site-v71 .v7-social-links a, html body.site-v71 .timeline-item a, html body.site-v71 .academic-link, html body.site-v71 .academic-back {
+  display: inline-flex; align-items: center; min-height: 32px; }
+@media (max-width: 640px) {
+  html body.site-v71 .case-breadcrumb, html body.site-v71 .v7-project-card a, html body.site-v71 .v7-card-footer a,
+  html body.site-v71 .v7-social-links a, html body.site-v71 .timeline-item a, html body.site-v71 .academic-link, html body.site-v71 .academic-back { min-height: 44px; }
+}
