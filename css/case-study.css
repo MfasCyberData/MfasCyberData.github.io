@@ -653,3 +653,17 @@ body.theme-ligolo{--case-accent:#257449;--case-tint:#EDF7F0}
 /* V7.2.7: numbered procedure lists */
 .case-steps{margin:8px 0 18px;padding-left:1.4em;display:grid;gap:4px}
 .case-steps li{padding-left:.2em}
+
+/* Food Prices: original Prophet graphics, keyboard- and swipe-accessible gallery. */
+.case-page.theme-food .forecast-swipe-gallery { margin: 24px 0; }
+.case-page.theme-food .forecast-swipe-help { margin: 0 0 11px; color: #3D5365; font-size: .86rem; }
+.case-page.theme-food .forecast-swipe-nav { display: flex; flex-wrap: wrap; gap: 9px; margin: 10px 0 14px; }
+.case-page.theme-food .forecast-swipe-nav a { display: inline-flex; align-items: center; padding: 8px 13px; background: #EEF3FB; color: #1F4E9E; border: 1px solid #B9C9E5; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: .91rem; }
+.case-page.theme-food .forecast-swipe-nav a:hover, .case-page.theme-food .forecast-swipe-nav a:focus-visible { background: #E7EEF9; outline-offset: 3px; }
+.case-page.theme-food .forecast-swipe-track { display: flex; overflow-x: auto; gap: 16px; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0 0 12px; overscroll-behavior-x: contain; scrollbar-color: #1F4E9E #E5EDF5; }
+.case-page.theme-food .forecast-swipe-slide { flex: 0 0 100%; min-width: 0; margin: 0; scroll-snap-align: start; }
+.case-page.theme-food .forecast-chart-image { display: block; width: 100%; height: auto; max-height: none; object-fit: contain; }
+.case-page.theme-food .forecast-swipe-slide figcaption { line-height: 1.5; }
+.case-page.theme-food .forecast-open-full { display: inline-block; margin-left: 7px; color: #1F4E9E; font-weight: 700; text-underline-offset: 3px; }
+.case-page.theme-food .forecast-chart-legend { padding: 11px 14px; margin-top: 6px; color: #263949; background: #F5F7FB; border-left: 3px solid #E3A33A; border-radius: 4px; font-size: .86rem; line-height: 1.55; }
+@media (max-width: 620px) { .case-page.theme-food .forecast-swipe-nav a { padding: 8px 10px; } .case-page.theme-food .forecast-swipe-help { font-size: .84rem; } .case-page.theme-food .forecast-chart-legend { font-size: .84rem; } }

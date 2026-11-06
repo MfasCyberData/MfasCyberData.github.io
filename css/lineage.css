@@ -54,7 +54,7 @@ html body.site-v71 {
 /* 2. Navigation */
 .site-v71 .site-nav { background: rgba(250, 249, 246, 0.95); border-bottom: 1px solid var(--ln-line); box-shadow: none; }
 @supports (backdrop-filter: blur(8px)) { .site-v71 .site-nav { background: rgba(250, 249, 246, 0.84); backdrop-filter: blur(10px); } }
-.site-v71 .brand-mark { border-radius: 6px; background: var(--ln-ink); color: #FFFFFF; font-family: var(--mono); }
+.site-v71 .brand-mark { border-radius: 6px; background: #1F4E9E; color: #FFFFFF; font-family: var(--mono); }
 .site-v71 .brand-copy small { font-family: var(--mono); letter-spacing: 0.06em; }
 .site-v71 .nav-cta, .site-v71 .site-nav .language-switcher, .site-v71 .site-nav .language-switcher a { border-radius: 6px; }
 .site-v71 .nav-cta { background: var(--ln-ink) !important; box-shadow: none !important; }
@@ -183,7 +183,7 @@ html body.site-v71 .contact-section .button-outline, html body.site-v71 .case-ct
   background: transparent !important; color: #FFFFFF !important; border-color: rgba(255, 255, 255, 0.55) !important; }
 html body.site-v71 .contact-section .button-outline:hover, html body.site-v71 .case-cta .button-outline:hover { background: rgba(255, 255, 255, 0.12) !important; border-color: #FFFFFF !important; }
 /* logo et boutons d’agrandissement */
-html body.site-v71 .brand-mark { background: var(--ln-ink) !important; color: #FFFFFF !important; border: 0 !important; box-shadow: none !important; }
+html body.site-v71 .brand-mark { background: #1F4E9E !important; color: #FFFFFF !important; border: 0 !important; box-shadow: none !important; }
 html body.site-v71.beyond-page .site-nav { background: rgba(250, 249, 246, 0.95) !important; border-bottom: 1px solid var(--ln-line) !important; }
 /* la couche cliquable reste transparente sur toute l’image ; seule l’icône ⤢ (::after) prend le style encre */
 html body.site-v71 button.v722-zoom-trigger { background: transparent !important; box-shadow: none !important; }
